@@ -31,9 +31,6 @@
 #define EEPROM_PassWordStartLocation  0x41
 #define EEPROM_PassWordEndLocation    0x60
 
-#define EEPROM_UserNameMaximumLength 20
-#define EEPROM_PassWordMaximumLength  20
-
 volatile u8 KPD_Press, Error_State = 1,UserName_Length = 0, PassWord_Length = 0;
 volatile u8 Check[21] ;
 volatile u8 UserName_Check_Flag = 1, PassWord_Check_Flag = 1;
