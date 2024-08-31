@@ -7,29 +7,29 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   1 .data         00000216  00800060  00004982  00004a16  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000049  00800276  00800276  00004c2c  2**0
+  2 .bss          00000021  00800276  00800276  00004c2c  2**0
                   ALLOC
-  3 .stab         00004080  00000000  00000000  00004c2c  2**2
+  3 .stab         00004068  00000000  00000000  00004c2c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00001347  00000000  00000000  00008cac  2**0
+  4 .stabstr      00001311  00000000  00000000  00008c94  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000220  00000000  00000000  00009ff3  2**0
+  5 .debug_aranges 00000220  00000000  00000000  00009fa5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 00000277  00000000  00000000  0000a213  2**0
+  6 .debug_pubnames 00000277  00000000  00000000  0000a1c5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   00002953  00000000  00000000  0000a48a  2**0
+  7 .debug_info   00002953  00000000  00000000  0000a43c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000016b7  00000000  00000000  0000cddd  2**0
+  8 .debug_abbrev 000016b7  00000000  00000000  0000cd8f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00001570  00000000  00000000  0000e494  2**0
+  9 .debug_line   00001570  00000000  00000000  0000e446  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000240  00000000  00000000  0000fa04  2**2
+ 10 .debug_frame  00000240  00000000  00000000  0000f9b8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    0000036b  00000000  00000000  0000fc44  2**0
+ 11 .debug_str    0000036b  00000000  00000000  0000fbf8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000bf0  00000000  00000000  0000ffaf  2**0
+ 12 .debug_loc    00000bf0  00000000  00000000  0000ff63  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 00000050  00000000  00000000  00010b9f  2**0
+ 13 .debug_ranges 00000050  00000000  00000000  00010b53  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -92,7 +92,7 @@ Disassembly of section .text:
       7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-      80:	af 3b       	cpi	r26, 0xBF	; 191
+      80:	a7 39       	cpi	r26, 0x97	; 151
       82:	b1 07       	cpc	r27, r17
       84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
       86:	0e 94 c3 1c 	call	0x3986	; 0x3986 <main>

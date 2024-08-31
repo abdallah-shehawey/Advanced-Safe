@@ -60,8 +60,6 @@ Common symbol       size              file
 
 Check               0x15              ./APP_Layer/Advanced_Safe.o
 KPD_Press           0x1               ./APP_Layer/Advanced_Safe.o
-UserName            0x14              ./APP_Layer/Advanced_Safe.o
-Password            0x14              ./APP_Layer/Advanced_Safe.o
 
 Memory Configuration
 
@@ -533,7 +531,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00800276                _edata = .
                 0x00800276                PROVIDE (__data_end, .)
 
-.bss            0x00800276       0x49
+.bss            0x00800276       0x21
                 0x00800276                PROVIDE (__bss_start, .)
  *(.bss)
  .bss           0x00800276        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
@@ -589,21 +587,19 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x00800280        0x1 ./APP_Layer/Advanced_Safe.o
                 0x00800280                PassWord_Length
  *(COMMON)
- COMMON         0x00800281       0x3e ./APP_Layer/Advanced_Safe.o
+ COMMON         0x00800281       0x16 ./APP_Layer/Advanced_Safe.o
                 0x00800281                Check
                 0x00800296                KPD_Press
-                0x00800297                UserName
-                0x008002ab                Password
-                0x008002bf                PROVIDE (__bss_end, .)
+                0x00800297                PROVIDE (__bss_end, .)
                 0x00004982                __data_load_start = LOADADDR (.data)
                 0x00004b98                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002bf        0x0
-                0x008002bf                PROVIDE (__noinit_start, .)
+.noinit         0x00800297        0x0
+                0x00800297                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x008002bf                PROVIDE (__noinit_end, .)
-                0x008002bf                _end = .
-                0x008002bf                PROVIDE (__heap_start, .)
+                0x00800297                PROVIDE (__noinit_end, .)
+                0x00800297                _end = .
+                0x00800297                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -621,7 +617,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .signature
  *(.signature*)
 
-.stab           0x00000000     0x4080
+.stab           0x00000000     0x4068
  *(.stab)
  .stab          0x00000000      0xc30 ./MCAL_Layer/USART/USART_prog.o
  .stab          0x00000c30      0x240 ./MCAL_Layer/EEPROM/EEPROM_prog.o
@@ -630,12 +626,12 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                                 0xec4 (size before relaxing)
  .stab          0x00001d28      0xfa8 ./HAL_Layer/CLCD/CLCD_prog.o
                                0x1140 (size before relaxing)
- .stab          0x00002cd0     0x13b0 ./APP_Layer/Advanced_Safe.o
-                               0x1548 (size before relaxing)
+ .stab          0x00002cd0     0x1398 ./APP_Layer/Advanced_Safe.o
+                               0x1530 (size before relaxing)
 
-.stabstr        0x00000000     0x1347
+.stabstr        0x00000000     0x1311
  *(.stabstr)
- .stabstr       0x00000000     0x1347 ./MCAL_Layer/USART/USART_prog.o
+ .stabstr       0x00000000     0x1311 ./MCAL_Layer/USART/USART_prog.o
 
 .stab.excl
  *(.stab.excl)

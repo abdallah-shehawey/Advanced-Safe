@@ -34,9 +34,6 @@
 #define EEPROM_UserNameMaximumLength 20
 #define EEPROM_PassWordMaximumLength  20
 
-char UserName[EEPROM_PassWordMaximumLength];
-char Password  [EEPROM_UserNameMaximumLength];
-
 volatile u8 KPD_Press, Error_State = 1,UserName_Length = 0, PassWord_Length = 0;
 volatile u8 Check[21] ;
 volatile u8 UserName_Check_Flag = 1, PassWord_Check_Flag = 1;
