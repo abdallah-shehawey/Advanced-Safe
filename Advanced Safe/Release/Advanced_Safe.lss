@@ -1,31 +1,31 @@
 
-The_Safe.elf:     file format elf32-avr
+Advanced_Safe.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00002898  00000000  00000000  00000094  2**1
+  0 .text         00002882  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000216  00800060  00002898  0000292c  2**0
+  1 .data         00000216  00800060  00002882  00002916  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000049  00800276  00800276  00002b42  2**0
+  2 .bss          00000021  00800276  00800276  00002b2c  2**0
                   ALLOC
-  3 .debug_aranges 00000200  00000000  00000000  00002b42  2**0
+  3 .debug_aranges 00000200  00000000  00000000  00002b2c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 00000259  00000000  00000000  00002d42  2**0
+  4 .debug_pubnames 00000259  00000000  00000000  00002d2c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   000026d4  00000000  00000000  00002f9b  2**0
+  5 .debug_info   000026d4  00000000  00000000  00002f85  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000155d  00000000  00000000  0000566f  2**0
+  6 .debug_abbrev 0000155d  00000000  00000000  00005659  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000149d  00000000  00000000  00006bcc  2**0
+  7 .debug_line   0000149d  00000000  00000000  00006bb6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000220  00000000  00000000  0000806c  2**2
+  8 .debug_frame  00000220  00000000  00000000  00008054  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000363  00000000  00000000  0000828c  2**0
+  9 .debug_str    00000363  00000000  00000000  00008274  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000bb4  00000000  00000000  000085ef  2**0
+ 10 .debug_loc    00000bb4  00000000  00000000  000085d7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000050  00000000  00000000  000091a3  2**0
+ 11 .debug_ranges 00000050  00000000  00000000  0000918b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
       60:	12 e0       	ldi	r17, 0x02	; 2
       62:	a0 e6       	ldi	r26, 0x60	; 96
       64:	b0 e0       	ldi	r27, 0x00	; 0
-      66:	e8 e9       	ldi	r30, 0x98	; 152
+      66:	e2 e8       	ldi	r30, 0x82	; 130
       68:	f8 e2       	ldi	r31, 0x28	; 40
       6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
 
@@ -88,11 +88,11 @@ Disassembly of section .text:
       7e:	1d 92       	st	X+, r1
 
 00000080 <.do_clear_bss_start>:
-      80:	af 3b       	cpi	r26, 0xBF	; 191
+      80:	a7 39       	cpi	r26, 0x97	; 151
       82:	b1 07       	cpc	r27, r17
       84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
-      86:	0e 94 1a 13 	call	0x2634	; 0x2634 <main>
-      8a:	0c 94 4a 14 	jmp	0x2894	; 0x2894 <_exit>
+      86:	0e 94 34 0f 	call	0x1e68	; 0x1e68 <main>
+      8a:	0c 94 3f 14 	jmp	0x287e	; 0x287e <_exit>
 
 0000008e <__bad_interrupt>:
       8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -217,7 +217,7 @@ Disassembly of section .text:
      17c:	b0 e0       	ldi	r27, 0x00	; 0
      17e:	e3 ec       	ldi	r30, 0xC3	; 195
      180:	f0 e0       	ldi	r31, 0x00	; 0
-     182:	0c 94 13 14 	jmp	0x2826	; 0x2826 <__prologue_saves__>
+     182:	0c 94 08 14 	jmp	0x2810	; 0x2810 <__prologue_saves__>
      186:	7b 01       	movw	r14, r22
      188:	8c 01       	movw	r16, r24
      18a:	20 e0       	ldi	r18, 0x00	; 0
@@ -367,14 +367,14 @@ Disassembly of section .text:
      2c0:	cd b7       	in	r28, 0x3d	; 61
      2c2:	de b7       	in	r29, 0x3e	; 62
      2c4:	e2 e1       	ldi	r30, 0x12	; 18
-     2c6:	0c 94 2f 14 	jmp	0x285e	; 0x285e <__epilogue_restores__>
+     2c6:	0c 94 24 14 	jmp	0x2848	; 0x2848 <__epilogue_restores__>
 
 000002ca <_fpadd_parts>:
      2ca:	a0 e0       	ldi	r26, 0x00	; 0
      2cc:	b0 e0       	ldi	r27, 0x00	; 0
      2ce:	eb e6       	ldi	r30, 0x6B	; 107
      2d0:	f1 e0       	ldi	r31, 0x01	; 1
-     2d2:	0c 94 13 14 	jmp	0x2826	; 0x2826 <__prologue_saves__>
+     2d2:	0c 94 08 14 	jmp	0x2810	; 0x2810 <__prologue_saves__>
      2d6:	dc 01       	movw	r26, r24
      2d8:	2b 01       	movw	r4, r22
      2da:	fa 01       	movw	r30, r20
@@ -699,14 +699,14 @@ Disassembly of section .text:
      558:	cd b7       	in	r28, 0x3d	; 61
      55a:	de b7       	in	r29, 0x3e	; 62
      55c:	e2 e1       	ldi	r30, 0x12	; 18
-     55e:	0c 94 2f 14 	jmp	0x285e	; 0x285e <__epilogue_restores__>
+     55e:	0c 94 24 14 	jmp	0x2848	; 0x2848 <__epilogue_restores__>
 
 00000562 <__subsf3>:
      562:	a0 e2       	ldi	r26, 0x20	; 32
      564:	b0 e0       	ldi	r27, 0x00	; 0
      566:	e7 eb       	ldi	r30, 0xB7	; 183
      568:	f2 e0       	ldi	r31, 0x02	; 2
-     56a:	0c 94 1f 14 	jmp	0x283e	; 0x283e <__prologue_saves__+0x18>
+     56a:	0c 94 14 14 	jmp	0x2828	; 0x2828 <__prologue_saves__+0x18>
      56e:	69 83       	std	Y+1, r22	; 0x01
      570:	7a 83       	std	Y+2, r23	; 0x02
      572:	8b 83       	std	Y+3, r24	; 0x03
@@ -744,14 +744,14 @@ Disassembly of section .text:
      5b8:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      5bc:	a0 96       	adiw	r28, 0x20	; 32
      5be:	e6 e0       	ldi	r30, 0x06	; 6
-     5c0:	0c 94 3b 14 	jmp	0x2876	; 0x2876 <__epilogue_restores__+0x18>
+     5c0:	0c 94 30 14 	jmp	0x2860	; 0x2860 <__epilogue_restores__+0x18>
 
 000005c4 <__addsf3>:
      5c4:	a0 e2       	ldi	r26, 0x20	; 32
      5c6:	b0 e0       	ldi	r27, 0x00	; 0
      5c8:	e8 ee       	ldi	r30, 0xE8	; 232
      5ca:	f2 e0       	ldi	r31, 0x02	; 2
-     5cc:	0c 94 1f 14 	jmp	0x283e	; 0x283e <__prologue_saves__+0x18>
+     5cc:	0c 94 14 14 	jmp	0x2828	; 0x2828 <__prologue_saves__+0x18>
      5d0:	69 83       	std	Y+1, r22	; 0x01
      5d2:	7a 83       	std	Y+2, r23	; 0x02
      5d4:	8b 83       	std	Y+3, r24	; 0x03
@@ -785,14 +785,14 @@ Disassembly of section .text:
      612:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      616:	a0 96       	adiw	r28, 0x20	; 32
      618:	e6 e0       	ldi	r30, 0x06	; 6
-     61a:	0c 94 3b 14 	jmp	0x2876	; 0x2876 <__epilogue_restores__+0x18>
+     61a:	0c 94 30 14 	jmp	0x2860	; 0x2860 <__epilogue_restores__+0x18>
 
 0000061e <__mulsf3>:
      61e:	a0 e2       	ldi	r26, 0x20	; 32
      620:	b0 e0       	ldi	r27, 0x00	; 0
      622:	e5 e1       	ldi	r30, 0x15	; 21
      624:	f3 e0       	ldi	r31, 0x03	; 3
-     626:	0c 94 13 14 	jmp	0x2826	; 0x2826 <__prologue_saves__>
+     626:	0c 94 08 14 	jmp	0x2810	; 0x2810 <__prologue_saves__>
      62a:	69 83       	std	Y+1, r22	; 0x01
      62c:	7a 83       	std	Y+2, r23	; 0x02
      62e:	8b 83       	std	Y+3, r24	; 0x03
@@ -1032,14 +1032,14 @@ Disassembly of section .text:
      806:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      80a:	a0 96       	adiw	r28, 0x20	; 32
      80c:	e2 e1       	ldi	r30, 0x12	; 18
-     80e:	0c 94 2f 14 	jmp	0x285e	; 0x285e <__epilogue_restores__>
+     80e:	0c 94 24 14 	jmp	0x2848	; 0x2848 <__epilogue_restores__>
 
 00000812 <__divsf3>:
      812:	a8 e1       	ldi	r26, 0x18	; 24
      814:	b0 e0       	ldi	r27, 0x00	; 0
      816:	ef e0       	ldi	r30, 0x0F	; 15
      818:	f4 e0       	ldi	r31, 0x04	; 4
-     81a:	0c 94 1b 14 	jmp	0x2836	; 0x2836 <__prologue_saves__+0x10>
+     81a:	0c 94 10 14 	jmp	0x2820	; 0x2820 <__prologue_saves__+0x10>
      81e:	69 83       	std	Y+1, r22	; 0x01
      820:	7a 83       	std	Y+2, r23	; 0x02
      822:	8b 83       	std	Y+3, r24	; 0x03
@@ -1201,14 +1201,14 @@ Disassembly of section .text:
      95e:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      962:	68 96       	adiw	r28, 0x18	; 24
      964:	ea e0       	ldi	r30, 0x0A	; 10
-     966:	0c 94 37 14 	jmp	0x286e	; 0x286e <__epilogue_restores__+0x10>
+     966:	0c 94 2c 14 	jmp	0x2858	; 0x2858 <__epilogue_restores__+0x10>
 
 0000096a <__gesf2>:
      96a:	a8 e1       	ldi	r26, 0x18	; 24
      96c:	b0 e0       	ldi	r27, 0x00	; 0
      96e:	eb eb       	ldi	r30, 0xBB	; 187
      970:	f4 e0       	ldi	r31, 0x04	; 4
-     972:	0c 94 1f 14 	jmp	0x283e	; 0x283e <__prologue_saves__+0x18>
+     972:	0c 94 14 14 	jmp	0x2828	; 0x2828 <__prologue_saves__+0x18>
      976:	69 83       	std	Y+1, r22	; 0x01
      978:	7a 83       	std	Y+2, r23	; 0x02
      97a:	8b 83       	std	Y+3, r24	; 0x03
@@ -1246,14 +1246,14 @@ Disassembly of section .text:
      9c0:	8f ef       	ldi	r24, 0xFF	; 255
      9c2:	68 96       	adiw	r28, 0x18	; 24
      9c4:	e6 e0       	ldi	r30, 0x06	; 6
-     9c6:	0c 94 3b 14 	jmp	0x2876	; 0x2876 <__epilogue_restores__+0x18>
+     9c6:	0c 94 30 14 	jmp	0x2860	; 0x2860 <__epilogue_restores__+0x18>
 
 000009ca <__ltsf2>:
      9ca:	a8 e1       	ldi	r26, 0x18	; 24
      9cc:	b0 e0       	ldi	r27, 0x00	; 0
      9ce:	eb ee       	ldi	r30, 0xEB	; 235
      9d0:	f4 e0       	ldi	r31, 0x04	; 4
-     9d2:	0c 94 1f 14 	jmp	0x283e	; 0x283e <__prologue_saves__+0x18>
+     9d2:	0c 94 14 14 	jmp	0x2828	; 0x2828 <__prologue_saves__+0x18>
      9d6:	69 83       	std	Y+1, r22	; 0x01
      9d8:	7a 83       	std	Y+2, r23	; 0x02
      9da:	8b 83       	std	Y+3, r24	; 0x03
@@ -1291,14 +1291,14 @@ Disassembly of section .text:
      a20:	81 e0       	ldi	r24, 0x01	; 1
      a22:	68 96       	adiw	r28, 0x18	; 24
      a24:	e6 e0       	ldi	r30, 0x06	; 6
-     a26:	0c 94 3b 14 	jmp	0x2876	; 0x2876 <__epilogue_restores__+0x18>
+     a26:	0c 94 30 14 	jmp	0x2860	; 0x2860 <__epilogue_restores__+0x18>
 
 00000a2a <__floatsisf>:
      a2a:	a8 e0       	ldi	r26, 0x08	; 8
      a2c:	b0 e0       	ldi	r27, 0x00	; 0
      a2e:	eb e1       	ldi	r30, 0x1B	; 27
      a30:	f5 e0       	ldi	r31, 0x05	; 5
-     a32:	0c 94 1c 14 	jmp	0x2838	; 0x2838 <__prologue_saves__+0x12>
+     a32:	0c 94 11 14 	jmp	0x2822	; 0x2822 <__prologue_saves__+0x12>
      a36:	9b 01       	movw	r18, r22
      a38:	ac 01       	movw	r20, r24
      a3a:	83 e0       	ldi	r24, 0x03	; 3
@@ -1383,14 +1383,14 @@ Disassembly of section .text:
      ada:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      ade:	28 96       	adiw	r28, 0x08	; 8
      ae0:	e9 e0       	ldi	r30, 0x09	; 9
-     ae2:	0c 94 38 14 	jmp	0x2870	; 0x2870 <__epilogue_restores__+0x12>
+     ae2:	0c 94 2d 14 	jmp	0x285a	; 0x285a <__epilogue_restores__+0x12>
 
 00000ae6 <__fixsfsi>:
      ae6:	ac e0       	ldi	r26, 0x0C	; 12
      ae8:	b0 e0       	ldi	r27, 0x00	; 0
      aea:	e9 e7       	ldi	r30, 0x79	; 121
      aec:	f5 e0       	ldi	r31, 0x05	; 5
-     aee:	0c 94 23 14 	jmp	0x2846	; 0x2846 <__prologue_saves__+0x20>
+     aee:	0c 94 18 14 	jmp	0x2830	; 0x2830 <__prologue_saves__+0x20>
      af2:	69 83       	std	Y+1, r22	; 0x01
      af4:	7a 83       	std	Y+2, r23	; 0x02
      af6:	8b 83       	std	Y+3, r24	; 0x03
@@ -1466,14 +1466,14 @@ Disassembly of section .text:
      b84:	ca 01       	movw	r24, r20
      b86:	2c 96       	adiw	r28, 0x0c	; 12
      b88:	e2 e0       	ldi	r30, 0x02	; 2
-     b8a:	0c 94 3f 14 	jmp	0x287e	; 0x287e <__epilogue_restores__+0x20>
+     b8a:	0c 94 34 14 	jmp	0x2868	; 0x2868 <__epilogue_restores__+0x20>
 
 00000b8e <__floatunsisf>:
      b8e:	a8 e0       	ldi	r26, 0x08	; 8
      b90:	b0 e0       	ldi	r27, 0x00	; 0
      b92:	ed ec       	ldi	r30, 0xCD	; 205
      b94:	f5 e0       	ldi	r31, 0x05	; 5
-     b96:	0c 94 1b 14 	jmp	0x2836	; 0x2836 <__prologue_saves__+0x10>
+     b96:	0c 94 10 14 	jmp	0x2820	; 0x2820 <__prologue_saves__+0x10>
      b9a:	7b 01       	movw	r14, r22
      b9c:	8c 01       	movw	r16, r24
      b9e:	61 15       	cp	r22, r1
@@ -1585,7 +1585,7 @@ Disassembly of section .text:
      c74:	0e 94 3a 07 	call	0xe74	; 0xe74 <__pack_f>
      c78:	28 96       	adiw	r28, 0x08	; 8
      c7a:	ea e0       	ldi	r30, 0x0A	; 10
-     c7c:	0c 94 37 14 	jmp	0x286e	; 0x286e <__epilogue_restores__+0x10>
+     c7c:	0c 94 2c 14 	jmp	0x2858	; 0x2858 <__epilogue_restores__+0x10>
 
 00000c80 <__ashldi3>:
      c80:	ef 92       	push	r14
@@ -3650,12 +3650,12 @@ Disassembly of section .text:
     1c82:	30 e0       	ldi	r19, 0x00	; 0
     1c84:	40 e0       	ldi	r20, 0x00	; 0
     1c86:	50 e0       	ldi	r21, 0x00	; 0
-    1c88:	0e 94 b7 13 	call	0x276e	; 0x276e <__mulsi3>
+    1c88:	0e 94 ac 13 	call	0x2758	; 0x2758 <__mulsi3>
     1c8c:	7b 01       	movw	r14, r22
     1c8e:	8c 01       	movw	r16, r24
     1c90:	c6 01       	movw	r24, r12
     1c92:	b5 01       	movw	r22, r10
-    1c94:	0e 94 f8 13 	call	0x27f0	; 0x27f0 <__divmodsi4>
+    1c94:	0e 94 ed 13 	call	0x27da	; 0x27da <__divmodsi4>
     1c98:	3b 01       	movw	r6, r22
     1c9a:	4c 01       	movw	r8, r24
     1c9c:	6e 0c       	add	r6, r14
@@ -3668,7 +3668,7 @@ Disassembly of section .text:
     1caa:	30 e0       	ldi	r19, 0x00	; 0
     1cac:	40 e0       	ldi	r20, 0x00	; 0
     1cae:	50 e0       	ldi	r21, 0x00	; 0
-    1cb0:	0e 94 f8 13 	call	0x27f0	; 0x27f0 <__divmodsi4>
+    1cb0:	0e 94 ed 13 	call	0x27da	; 0x27da <__divmodsi4>
     1cb4:	c9 01       	movw	r24, r18
     1cb6:	da 01       	movw	r26, r20
     1cb8:	5c 01       	movw	r10, r24
@@ -3685,7 +3685,7 @@ Disassembly of section .text:
     1cce:	30 e0       	ldi	r19, 0x00	; 0
     1cd0:	40 e0       	ldi	r20, 0x00	; 0
     1cd2:	50 e0       	ldi	r21, 0x00	; 0
-    1cd4:	0e 94 d6 13 	call	0x27ac	; 0x27ac <__udivmodsi4>
+    1cd4:	0e 94 cb 13 	call	0x2796	; 0x2796 <__udivmodsi4>
     1cd8:	86 2f       	mov	r24, r22
     1cda:	80 5d       	subi	r24, 0xD0	; 208
     1cdc:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
@@ -3695,7 +3695,7 @@ Disassembly of section .text:
     1ce6:	30 e0       	ldi	r19, 0x00	; 0
     1ce8:	40 e0       	ldi	r20, 0x00	; 0
     1cea:	50 e0       	ldi	r21, 0x00	; 0
-    1cec:	0e 94 d6 13 	call	0x27ac	; 0x27ac <__udivmodsi4>
+    1cec:	0e 94 cb 13 	call	0x2796	; 0x2796 <__udivmodsi4>
     1cf0:	c9 01       	movw	r24, r18
     1cf2:	da 01       	movw	r26, r20
     1cf4:	3c 01       	movw	r6, r24
@@ -3867,823 +3867,827 @@ Disassembly of section .text:
     1e64:	0f 91       	pop	r16
     1e66:	08 95       	ret
 
-00001e68 <Clear_Char>:
-    1e68:	80 e1       	ldi	r24, 0x10	; 16
-    1e6a:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    1e6e:	80 e2       	ldi	r24, 0x20	; 32
-    1e70:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    1e74:	80 e1       	ldi	r24, 0x10	; 16
-    1e76:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    1e7a:	08 95       	ret
+00001e68 <main>:
+    1e68:	cf 93       	push	r28
+    1e6a:	df 93       	push	r29
+    1e6c:	0e 94 e6 0e 	call	0x1dcc	; 0x1dcc <CLCD_vInit>
+    1e70:	0e 94 e0 08 	call	0x11c0	; 0x11c0 <USART_vInit>
+    1e74:	81 e0       	ldi	r24, 0x01	; 1
+    1e76:	67 e0       	ldi	r22, 0x07	; 7
+    1e78:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    1e7c:	80 e6       	ldi	r24, 0x60	; 96
+    1e7e:	90 e0       	ldi	r25, 0x00	; 0
+    1e80:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    1e84:	88 e8       	ldi	r24, 0x88	; 136
+    1e86:	93 e1       	ldi	r25, 0x13	; 19
+    1e88:	28 ec       	ldi	r18, 0xC8	; 200
+    1e8a:	30 e0       	ldi	r19, 0x00	; 0
+    1e8c:	f9 01       	movw	r30, r18
+    1e8e:	31 97       	sbiw	r30, 0x01	; 1
+    1e90:	f1 f7       	brne	.-4      	; 0x1e8e <main+0x26>
+    1e92:	01 97       	sbiw	r24, 0x01	; 1
+    1e94:	d9 f7       	brne	.-10     	; 0x1e8c <main+0x24>
+    1e96:	0e 94 31 13 	call	0x2662	; 0x2662 <EEPROM_Check>
+    1e9a:	c8 ec       	ldi	r28, 0xC8	; 200
+    1e9c:	d0 e0       	ldi	r29, 0x00	; 0
+    1e9e:	0e 94 aa 10 	call	0x2154	; 0x2154 <Sign_In>
+    1ea2:	80 e1       	ldi	r24, 0x10	; 16
+    1ea4:	97 e2       	ldi	r25, 0x27	; 39
+    1ea6:	fe 01       	movw	r30, r28
+    1ea8:	31 97       	sbiw	r30, 0x01	; 1
+    1eaa:	f1 f7       	brne	.-4      	; 0x1ea8 <main+0x40>
+    1eac:	01 97       	sbiw	r24, 0x01	; 1
+    1eae:	d9 f7       	brne	.-10     	; 0x1ea6 <main+0x3e>
+    1eb0:	f6 cf       	rjmp	.-20     	; 0x1e9e <main+0x36>
 
-00001e7c <Error_TimeOut>:
-    1e7c:	1f 93       	push	r17
-    1e7e:	cf 93       	push	r28
-    1e80:	df 93       	push	r29
-    1e82:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    1e86:	80 e6       	ldi	r24, 0x60	; 96
-    1e88:	90 e0       	ldi	r25, 0x00	; 0
-    1e8a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    1e8e:	15 e3       	ldi	r17, 0x35	; 53
-    1e90:	c8 ec       	ldi	r28, 0xC8	; 200
-    1e92:	d0 e0       	ldi	r29, 0x00	; 0
-    1e94:	80 e1       	ldi	r24, 0x10	; 16
-    1e96:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    1e9a:	81 2f       	mov	r24, r17
-    1e9c:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    1ea0:	80 e1       	ldi	r24, 0x10	; 16
-    1ea2:	97 e2       	ldi	r25, 0x27	; 39
-    1ea4:	fe 01       	movw	r30, r28
-    1ea6:	31 97       	sbiw	r30, 0x01	; 1
-    1ea8:	f1 f7       	brne	.-4      	; 0x1ea6 <Error_TimeOut+0x2a>
-    1eaa:	01 97       	sbiw	r24, 0x01	; 1
-    1eac:	d9 f7       	brne	.-10     	; 0x1ea4 <Error_TimeOut+0x28>
-    1eae:	11 50       	subi	r17, 0x01	; 1
-    1eb0:	1f 32       	cpi	r17, 0x2F	; 47
-    1eb2:	81 f7       	brne	.-32     	; 0x1e94 <Error_TimeOut+0x18>
-    1eb4:	82 e1       	ldi	r24, 0x12	; 18
-    1eb6:	90 e0       	ldi	r25, 0x00	; 0
-    1eb8:	6f ef       	ldi	r22, 0xFF	; 255
-    1eba:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    1ebe:	83 e0       	ldi	r24, 0x03	; 3
-    1ec0:	80 93 75 02 	sts	0x0275, r24
-    1ec4:	df 91       	pop	r29
-    1ec6:	cf 91       	pop	r28
-    1ec8:	1f 91       	pop	r17
-    1eca:	08 95       	ret
+00001eb2 <Clear_Char>:
+    1eb2:	80 e1       	ldi	r24, 0x10	; 16
+    1eb4:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    1eb8:	80 e2       	ldi	r24, 0x20	; 32
+    1eba:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    1ebe:	80 e1       	ldi	r24, 0x10	; 16
+    1ec0:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    1ec4:	08 95       	ret
 
-00001ecc <PassWord_Check>:
-    1ecc:	0f 93       	push	r16
-    1ece:	1f 93       	push	r17
-    1ed0:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    1ed4:	8d e6       	ldi	r24, 0x6D	; 109
-    1ed6:	90 e0       	ldi	r25, 0x00	; 0
-    1ed8:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    1edc:	82 e0       	ldi	r24, 0x02	; 2
-    1ede:	61 e0       	ldi	r22, 0x01	; 1
-    1ee0:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    1ee4:	8e e0       	ldi	r24, 0x0E	; 14
-    1ee6:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    1eea:	81 e0       	ldi	r24, 0x01	; 1
-    1eec:	80 93 74 02 	sts	0x0274, r24
-    1ef0:	10 e0       	ldi	r17, 0x00	; 0
-    1ef2:	86 e9       	ldi	r24, 0x96	; 150
-    1ef4:	92 e0       	ldi	r25, 0x02	; 2
-    1ef6:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    1efa:	80 93 72 02 	sts	0x0272, r24
-    1efe:	80 91 72 02 	lds	r24, 0x0272
-    1f02:	88 23       	and	r24, r24
-    1f04:	c1 f4       	brne	.+48     	; 0x1f36 <PassWord_Check+0x6a>
-    1f06:	11 23       	and	r17, r17
-    1f08:	b1 f4       	brne	.+44     	; 0x1f36 <PassWord_Check+0x6a>
-    1f0a:	80 91 96 02 	lds	r24, 0x0296
-    1f0e:	8d 30       	cpi	r24, 0x0D	; 13
-    1f10:	81 f3       	breq	.-32     	; 0x1ef2 <PassWord_Check+0x26>
-    1f12:	80 91 96 02 	lds	r24, 0x0296
-    1f16:	8f 30       	cpi	r24, 0x0F	; 15
-    1f18:	61 f3       	breq	.-40     	; 0x1ef2 <PassWord_Check+0x26>
-    1f1a:	80 91 96 02 	lds	r24, 0x0296
-    1f1e:	88 30       	cpi	r24, 0x08	; 8
-    1f20:	41 f3       	breq	.-48     	; 0x1ef2 <PassWord_Check+0x26>
-    1f22:	80 91 96 02 	lds	r24, 0x0296
-    1f26:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    1f2a:	80 91 96 02 	lds	r24, 0x0296
-    1f2e:	80 93 81 02 	sts	0x0281, r24
-    1f32:	11 e0       	ldi	r17, 0x01	; 1
-    1f34:	de cf       	rjmp	.-68     	; 0x1ef2 <PassWord_Check+0x26>
-    1f36:	80 91 72 02 	lds	r24, 0x0272
-    1f3a:	88 23       	and	r24, r24
-    1f3c:	d9 f4       	brne	.+54     	; 0x1f74 <PassWord_Check+0xa8>
-    1f3e:	14 31       	cpi	r17, 0x14	; 20
-    1f40:	c8 f4       	brcc	.+50     	; 0x1f74 <PassWord_Check+0xa8>
-    1f42:	80 91 96 02 	lds	r24, 0x0296
-    1f46:	8d 30       	cpi	r24, 0x0D	; 13
-    1f48:	29 f1       	breq	.+74     	; 0x1f94 <PassWord_Check+0xc8>
-    1f4a:	80 91 96 02 	lds	r24, 0x0296
-    1f4e:	8f 30       	cpi	r24, 0x0F	; 15
-    1f50:	09 f1       	breq	.+66     	; 0x1f94 <PassWord_Check+0xc8>
-    1f52:	80 91 96 02 	lds	r24, 0x0296
-    1f56:	88 30       	cpi	r24, 0x08	; 8
-    1f58:	51 f1       	breq	.+84     	; 0x1fae <PassWord_Check+0xe2>
-    1f5a:	80 91 96 02 	lds	r24, 0x0296
-    1f5e:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    1f62:	e1 2f       	mov	r30, r17
-    1f64:	f0 e0       	ldi	r31, 0x00	; 0
-    1f66:	80 91 96 02 	lds	r24, 0x0296
-    1f6a:	ef 57       	subi	r30, 0x7F	; 127
-    1f6c:	fd 4f       	sbci	r31, 0xFD	; 253
-    1f6e:	80 83       	st	Z, r24
-    1f70:	1f 5f       	subi	r17, 0xFF	; 255
-    1f72:	bf cf       	rjmp	.-130    	; 0x1ef2 <PassWord_Check+0x26>
-    1f74:	80 91 72 02 	lds	r24, 0x0272
-    1f78:	88 23       	and	r24, r24
-    1f7a:	09 f0       	breq	.+2      	; 0x1f7e <PassWord_Check+0xb2>
-    1f7c:	ba cf       	rjmp	.-140    	; 0x1ef2 <PassWord_Check+0x26>
-    1f7e:	14 31       	cpi	r17, 0x14	; 20
-    1f80:	08 f4       	brcc	.+2      	; 0x1f84 <PassWord_Check+0xb8>
-    1f82:	b7 cf       	rjmp	.-146    	; 0x1ef2 <PassWord_Check+0x26>
-    1f84:	80 91 96 02 	lds	r24, 0x0296
-    1f88:	8d 30       	cpi	r24, 0x0D	; 13
-    1f8a:	21 f0       	breq	.+8      	; 0x1f94 <PassWord_Check+0xc8>
-    1f8c:	80 91 96 02 	lds	r24, 0x0296
-    1f90:	8f 30       	cpi	r24, 0x0F	; 15
-    1f92:	41 f4       	brne	.+16     	; 0x1fa4 <PassWord_Check+0xd8>
-    1f94:	8c e0       	ldi	r24, 0x0C	; 12
-    1f96:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    1f9a:	80 91 80 02 	lds	r24, 0x0280
-    1f9e:	18 17       	cp	r17, r24
-    1fa0:	01 f5       	brne	.+64     	; 0x1fe2 <PassWord_Check+0x116>
-    1fa2:	09 c0       	rjmp	.+18     	; 0x1fb6 <PassWord_Check+0xea>
-    1fa4:	80 91 96 02 	lds	r24, 0x0296
-    1fa8:	88 30       	cpi	r24, 0x08	; 8
-    1faa:	09 f0       	breq	.+2      	; 0x1fae <PassWord_Check+0xe2>
-    1fac:	a2 cf       	rjmp	.-188    	; 0x1ef2 <PassWord_Check+0x26>
-    1fae:	0e 94 34 0f 	call	0x1e68	; 0x1e68 <Clear_Char>
-    1fb2:	11 50       	subi	r17, 0x01	; 1
-    1fb4:	9e cf       	rjmp	.-196    	; 0x1ef2 <PassWord_Check+0x26>
-    1fb6:	00 e0       	ldi	r16, 0x00	; 0
-    1fb8:	0f c0       	rjmp	.+30     	; 0x1fd8 <PassWord_Check+0x10c>
-    1fba:	80 2f       	mov	r24, r16
-    1fbc:	90 e0       	ldi	r25, 0x00	; 0
-    1fbe:	fc 01       	movw	r30, r24
-    1fc0:	ef 57       	subi	r30, 0x7F	; 127
-    1fc2:	fd 4f       	sbci	r31, 0xFD	; 253
-    1fc4:	10 81       	ld	r17, Z
-    1fc6:	8f 5b       	subi	r24, 0xBF	; 191
-    1fc8:	9f 4f       	sbci	r25, 0xFF	; 255
-    1fca:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    1fce:	18 17       	cp	r17, r24
-    1fd0:	11 f0       	breq	.+4      	; 0x1fd6 <PassWord_Check+0x10a>
-    1fd2:	10 92 74 02 	sts	0x0274, r1
-    1fd6:	0f 5f       	subi	r16, 0xFF	; 255
-    1fd8:	80 91 80 02 	lds	r24, 0x0280
-    1fdc:	08 17       	cp	r16, r24
-    1fde:	68 f3       	brcs	.-38     	; 0x1fba <PassWord_Check+0xee>
-    1fe0:	06 c0       	rjmp	.+12     	; 0x1fee <PassWord_Check+0x122>
-    1fe2:	80 91 80 02 	lds	r24, 0x0280
-    1fe6:	18 17       	cp	r17, r24
-    1fe8:	11 f0       	breq	.+4      	; 0x1fee <PassWord_Check+0x122>
-    1fea:	10 92 74 02 	sts	0x0274, r1
-    1fee:	1f 91       	pop	r17
-    1ff0:	0f 91       	pop	r16
-    1ff2:	08 95       	ret
+00001ec6 <Error_TimeOut>:
+    1ec6:	1f 93       	push	r17
+    1ec8:	cf 93       	push	r28
+    1eca:	df 93       	push	r29
+    1ecc:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    1ed0:	88 e6       	ldi	r24, 0x68	; 104
+    1ed2:	90 e0       	ldi	r25, 0x00	; 0
+    1ed4:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    1ed8:	15 e3       	ldi	r17, 0x35	; 53
+    1eda:	c8 ec       	ldi	r28, 0xC8	; 200
+    1edc:	d0 e0       	ldi	r29, 0x00	; 0
+    1ede:	80 e1       	ldi	r24, 0x10	; 16
+    1ee0:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    1ee4:	81 2f       	mov	r24, r17
+    1ee6:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    1eea:	80 e1       	ldi	r24, 0x10	; 16
+    1eec:	97 e2       	ldi	r25, 0x27	; 39
+    1eee:	fe 01       	movw	r30, r28
+    1ef0:	31 97       	sbiw	r30, 0x01	; 1
+    1ef2:	f1 f7       	brne	.-4      	; 0x1ef0 <Error_TimeOut+0x2a>
+    1ef4:	01 97       	sbiw	r24, 0x01	; 1
+    1ef6:	d9 f7       	brne	.-10     	; 0x1eee <Error_TimeOut+0x28>
+    1ef8:	11 50       	subi	r17, 0x01	; 1
+    1efa:	1f 32       	cpi	r17, 0x2F	; 47
+    1efc:	81 f7       	brne	.-32     	; 0x1ede <Error_TimeOut+0x18>
+    1efe:	82 e1       	ldi	r24, 0x12	; 18
+    1f00:	90 e0       	ldi	r25, 0x00	; 0
+    1f02:	6f ef       	ldi	r22, 0xFF	; 255
+    1f04:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    1f08:	83 e0       	ldi	r24, 0x03	; 3
+    1f0a:	80 93 72 02 	sts	0x0272, r24
+    1f0e:	df 91       	pop	r29
+    1f10:	cf 91       	pop	r28
+    1f12:	1f 91       	pop	r17
+    1f14:	08 95       	ret
 
-00001ff4 <UserName_Check>:
-    1ff4:	0f 93       	push	r16
-    1ff6:	1f 93       	push	r17
-    1ff8:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    1ffc:	8c e7       	ldi	r24, 0x7C	; 124
-    1ffe:	90 e0       	ldi	r25, 0x00	; 0
-    2000:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2004:	82 e0       	ldi	r24, 0x02	; 2
-    2006:	61 e0       	ldi	r22, 0x01	; 1
-    2008:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    200c:	8e e0       	ldi	r24, 0x0E	; 14
-    200e:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    2012:	81 e0       	ldi	r24, 0x01	; 1
-    2014:	80 93 73 02 	sts	0x0273, r24
-    2018:	10 e0       	ldi	r17, 0x00	; 0
-    201a:	86 e9       	ldi	r24, 0x96	; 150
-    201c:	92 e0       	ldi	r25, 0x02	; 2
-    201e:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    2022:	80 93 72 02 	sts	0x0272, r24
-    2026:	80 91 72 02 	lds	r24, 0x0272
-    202a:	88 23       	and	r24, r24
-    202c:	c1 f4       	brne	.+48     	; 0x205e <UserName_Check+0x6a>
-    202e:	11 23       	and	r17, r17
-    2030:	b1 f4       	brne	.+44     	; 0x205e <UserName_Check+0x6a>
-    2032:	80 91 96 02 	lds	r24, 0x0296
-    2036:	8d 30       	cpi	r24, 0x0D	; 13
-    2038:	81 f3       	breq	.-32     	; 0x201a <UserName_Check+0x26>
-    203a:	80 91 96 02 	lds	r24, 0x0296
-    203e:	8f 30       	cpi	r24, 0x0F	; 15
-    2040:	61 f3       	breq	.-40     	; 0x201a <UserName_Check+0x26>
-    2042:	80 91 96 02 	lds	r24, 0x0296
-    2046:	88 30       	cpi	r24, 0x08	; 8
-    2048:	41 f3       	breq	.-48     	; 0x201a <UserName_Check+0x26>
-    204a:	80 91 96 02 	lds	r24, 0x0296
-    204e:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    2052:	80 91 96 02 	lds	r24, 0x0296
-    2056:	80 93 81 02 	sts	0x0281, r24
-    205a:	11 e0       	ldi	r17, 0x01	; 1
-    205c:	de cf       	rjmp	.-68     	; 0x201a <UserName_Check+0x26>
-    205e:	80 91 72 02 	lds	r24, 0x0272
-    2062:	88 23       	and	r24, r24
-    2064:	d9 f4       	brne	.+54     	; 0x209c <UserName_Check+0xa8>
-    2066:	14 31       	cpi	r17, 0x14	; 20
-    2068:	c8 f4       	brcc	.+50     	; 0x209c <UserName_Check+0xa8>
-    206a:	80 91 96 02 	lds	r24, 0x0296
-    206e:	8d 30       	cpi	r24, 0x0D	; 13
-    2070:	29 f1       	breq	.+74     	; 0x20bc <UserName_Check+0xc8>
-    2072:	80 91 96 02 	lds	r24, 0x0296
-    2076:	8f 30       	cpi	r24, 0x0F	; 15
-    2078:	09 f1       	breq	.+66     	; 0x20bc <UserName_Check+0xc8>
-    207a:	80 91 96 02 	lds	r24, 0x0296
-    207e:	88 30       	cpi	r24, 0x08	; 8
-    2080:	51 f1       	breq	.+84     	; 0x20d6 <UserName_Check+0xe2>
-    2082:	80 91 96 02 	lds	r24, 0x0296
-    2086:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    208a:	e1 2f       	mov	r30, r17
-    208c:	f0 e0       	ldi	r31, 0x00	; 0
-    208e:	80 91 96 02 	lds	r24, 0x0296
-    2092:	ef 57       	subi	r30, 0x7F	; 127
-    2094:	fd 4f       	sbci	r31, 0xFD	; 253
-    2096:	80 83       	st	Z, r24
-    2098:	1f 5f       	subi	r17, 0xFF	; 255
-    209a:	bf cf       	rjmp	.-130    	; 0x201a <UserName_Check+0x26>
-    209c:	80 91 72 02 	lds	r24, 0x0272
-    20a0:	88 23       	and	r24, r24
-    20a2:	09 f0       	breq	.+2      	; 0x20a6 <UserName_Check+0xb2>
-    20a4:	ba cf       	rjmp	.-140    	; 0x201a <UserName_Check+0x26>
-    20a6:	14 31       	cpi	r17, 0x14	; 20
-    20a8:	08 f4       	brcc	.+2      	; 0x20ac <UserName_Check+0xb8>
-    20aa:	b7 cf       	rjmp	.-146    	; 0x201a <UserName_Check+0x26>
-    20ac:	80 91 96 02 	lds	r24, 0x0296
+00001f16 <PassWord_Check>:
+    1f16:	0f 93       	push	r16
+    1f18:	1f 93       	push	r17
+    1f1a:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    1f1e:	85 e7       	ldi	r24, 0x75	; 117
+    1f20:	90 e0       	ldi	r25, 0x00	; 0
+    1f22:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    1f26:	82 e0       	ldi	r24, 0x02	; 2
+    1f28:	61 e0       	ldi	r22, 0x01	; 1
+    1f2a:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    1f2e:	8e e0       	ldi	r24, 0x0E	; 14
+    1f30:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    1f34:	81 e0       	ldi	r24, 0x01	; 1
+    1f36:	80 93 74 02 	sts	0x0274, r24
+    1f3a:	10 e0       	ldi	r17, 0x00	; 0
+    1f3c:	81 e8       	ldi	r24, 0x81	; 129
+    1f3e:	92 e0       	ldi	r25, 0x02	; 2
+    1f40:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    1f44:	80 93 75 02 	sts	0x0275, r24
+    1f48:	80 91 75 02 	lds	r24, 0x0275
+    1f4c:	88 23       	and	r24, r24
+    1f4e:	c1 f4       	brne	.+48     	; 0x1f80 <PassWord_Check+0x6a>
+    1f50:	11 23       	and	r17, r17
+    1f52:	b1 f4       	brne	.+44     	; 0x1f80 <PassWord_Check+0x6a>
+    1f54:	80 91 81 02 	lds	r24, 0x0281
+    1f58:	8d 30       	cpi	r24, 0x0D	; 13
+    1f5a:	81 f3       	breq	.-32     	; 0x1f3c <PassWord_Check+0x26>
+    1f5c:	80 91 81 02 	lds	r24, 0x0281
+    1f60:	8f 30       	cpi	r24, 0x0F	; 15
+    1f62:	61 f3       	breq	.-40     	; 0x1f3c <PassWord_Check+0x26>
+    1f64:	80 91 81 02 	lds	r24, 0x0281
+    1f68:	88 30       	cpi	r24, 0x08	; 8
+    1f6a:	41 f3       	breq	.-48     	; 0x1f3c <PassWord_Check+0x26>
+    1f6c:	80 91 81 02 	lds	r24, 0x0281
+    1f70:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    1f74:	80 91 81 02 	lds	r24, 0x0281
+    1f78:	80 93 82 02 	sts	0x0282, r24
+    1f7c:	11 e0       	ldi	r17, 0x01	; 1
+    1f7e:	de cf       	rjmp	.-68     	; 0x1f3c <PassWord_Check+0x26>
+    1f80:	80 91 75 02 	lds	r24, 0x0275
+    1f84:	88 23       	and	r24, r24
+    1f86:	d9 f4       	brne	.+54     	; 0x1fbe <PassWord_Check+0xa8>
+    1f88:	14 31       	cpi	r17, 0x14	; 20
+    1f8a:	c8 f4       	brcc	.+50     	; 0x1fbe <PassWord_Check+0xa8>
+    1f8c:	80 91 81 02 	lds	r24, 0x0281
+    1f90:	8d 30       	cpi	r24, 0x0D	; 13
+    1f92:	29 f1       	breq	.+74     	; 0x1fde <PassWord_Check+0xc8>
+    1f94:	80 91 81 02 	lds	r24, 0x0281
+    1f98:	8f 30       	cpi	r24, 0x0F	; 15
+    1f9a:	09 f1       	breq	.+66     	; 0x1fde <PassWord_Check+0xc8>
+    1f9c:	80 91 81 02 	lds	r24, 0x0281
+    1fa0:	88 30       	cpi	r24, 0x08	; 8
+    1fa2:	51 f1       	breq	.+84     	; 0x1ff8 <PassWord_Check+0xe2>
+    1fa4:	80 91 81 02 	lds	r24, 0x0281
+    1fa8:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    1fac:	e1 2f       	mov	r30, r17
+    1fae:	f0 e0       	ldi	r31, 0x00	; 0
+    1fb0:	80 91 81 02 	lds	r24, 0x0281
+    1fb4:	ee 57       	subi	r30, 0x7E	; 126
+    1fb6:	fd 4f       	sbci	r31, 0xFD	; 253
+    1fb8:	80 83       	st	Z, r24
+    1fba:	1f 5f       	subi	r17, 0xFF	; 255
+    1fbc:	bf cf       	rjmp	.-130    	; 0x1f3c <PassWord_Check+0x26>
+    1fbe:	80 91 75 02 	lds	r24, 0x0275
+    1fc2:	88 23       	and	r24, r24
+    1fc4:	09 f0       	breq	.+2      	; 0x1fc8 <PassWord_Check+0xb2>
+    1fc6:	ba cf       	rjmp	.-140    	; 0x1f3c <PassWord_Check+0x26>
+    1fc8:	14 31       	cpi	r17, 0x14	; 20
+    1fca:	08 f4       	brcc	.+2      	; 0x1fce <PassWord_Check+0xb8>
+    1fcc:	b7 cf       	rjmp	.-146    	; 0x1f3c <PassWord_Check+0x26>
+    1fce:	80 91 81 02 	lds	r24, 0x0281
+    1fd2:	8d 30       	cpi	r24, 0x0D	; 13
+    1fd4:	21 f0       	breq	.+8      	; 0x1fde <PassWord_Check+0xc8>
+    1fd6:	80 91 81 02 	lds	r24, 0x0281
+    1fda:	8f 30       	cpi	r24, 0x0F	; 15
+    1fdc:	41 f4       	brne	.+16     	; 0x1fee <PassWord_Check+0xd8>
+    1fde:	8c e0       	ldi	r24, 0x0C	; 12
+    1fe0:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    1fe4:	80 91 80 02 	lds	r24, 0x0280
+    1fe8:	18 17       	cp	r17, r24
+    1fea:	01 f5       	brne	.+64     	; 0x202c <PassWord_Check+0x116>
+    1fec:	09 c0       	rjmp	.+18     	; 0x2000 <PassWord_Check+0xea>
+    1fee:	80 91 81 02 	lds	r24, 0x0281
+    1ff2:	88 30       	cpi	r24, 0x08	; 8
+    1ff4:	09 f0       	breq	.+2      	; 0x1ff8 <PassWord_Check+0xe2>
+    1ff6:	a2 cf       	rjmp	.-188    	; 0x1f3c <PassWord_Check+0x26>
+    1ff8:	0e 94 59 0f 	call	0x1eb2	; 0x1eb2 <Clear_Char>
+    1ffc:	11 50       	subi	r17, 0x01	; 1
+    1ffe:	9e cf       	rjmp	.-196    	; 0x1f3c <PassWord_Check+0x26>
+    2000:	00 e0       	ldi	r16, 0x00	; 0
+    2002:	0f c0       	rjmp	.+30     	; 0x2022 <PassWord_Check+0x10c>
+    2004:	80 2f       	mov	r24, r16
+    2006:	90 e0       	ldi	r25, 0x00	; 0
+    2008:	fc 01       	movw	r30, r24
+    200a:	ee 57       	subi	r30, 0x7E	; 126
+    200c:	fd 4f       	sbci	r31, 0xFD	; 253
+    200e:	10 81       	ld	r17, Z
+    2010:	8f 5b       	subi	r24, 0xBF	; 191
+    2012:	9f 4f       	sbci	r25, 0xFF	; 255
+    2014:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    2018:	18 17       	cp	r17, r24
+    201a:	11 f0       	breq	.+4      	; 0x2020 <PassWord_Check+0x10a>
+    201c:	10 92 74 02 	sts	0x0274, r1
+    2020:	0f 5f       	subi	r16, 0xFF	; 255
+    2022:	80 91 80 02 	lds	r24, 0x0280
+    2026:	08 17       	cp	r16, r24
+    2028:	68 f3       	brcs	.-38     	; 0x2004 <PassWord_Check+0xee>
+    202a:	02 c0       	rjmp	.+4      	; 0x2030 <PassWord_Check+0x11a>
+    202c:	10 92 74 02 	sts	0x0274, r1
+    2030:	1f 91       	pop	r17
+    2032:	0f 91       	pop	r16
+    2034:	08 95       	ret
+
+00002036 <UserName_Check>:
+    2036:	0f 93       	push	r16
+    2038:	1f 93       	push	r17
+    203a:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    203e:	84 e8       	ldi	r24, 0x84	; 132
+    2040:	90 e0       	ldi	r25, 0x00	; 0
+    2042:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2046:	82 e0       	ldi	r24, 0x02	; 2
+    2048:	61 e0       	ldi	r22, 0x01	; 1
+    204a:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    204e:	8e e0       	ldi	r24, 0x0E	; 14
+    2050:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    2054:	81 e0       	ldi	r24, 0x01	; 1
+    2056:	80 93 73 02 	sts	0x0273, r24
+    205a:	10 e0       	ldi	r17, 0x00	; 0
+    205c:	81 e8       	ldi	r24, 0x81	; 129
+    205e:	92 e0       	ldi	r25, 0x02	; 2
+    2060:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    2064:	80 93 75 02 	sts	0x0275, r24
+    2068:	80 91 75 02 	lds	r24, 0x0275
+    206c:	88 23       	and	r24, r24
+    206e:	c1 f4       	brne	.+48     	; 0x20a0 <UserName_Check+0x6a>
+    2070:	11 23       	and	r17, r17
+    2072:	b1 f4       	brne	.+44     	; 0x20a0 <UserName_Check+0x6a>
+    2074:	80 91 81 02 	lds	r24, 0x0281
+    2078:	8d 30       	cpi	r24, 0x0D	; 13
+    207a:	81 f3       	breq	.-32     	; 0x205c <UserName_Check+0x26>
+    207c:	80 91 81 02 	lds	r24, 0x0281
+    2080:	8f 30       	cpi	r24, 0x0F	; 15
+    2082:	61 f3       	breq	.-40     	; 0x205c <UserName_Check+0x26>
+    2084:	80 91 81 02 	lds	r24, 0x0281
+    2088:	88 30       	cpi	r24, 0x08	; 8
+    208a:	41 f3       	breq	.-48     	; 0x205c <UserName_Check+0x26>
+    208c:	80 91 81 02 	lds	r24, 0x0281
+    2090:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    2094:	80 91 81 02 	lds	r24, 0x0281
+    2098:	80 93 82 02 	sts	0x0282, r24
+    209c:	11 e0       	ldi	r17, 0x01	; 1
+    209e:	de cf       	rjmp	.-68     	; 0x205c <UserName_Check+0x26>
+    20a0:	80 91 75 02 	lds	r24, 0x0275
+    20a4:	88 23       	and	r24, r24
+    20a6:	d9 f4       	brne	.+54     	; 0x20de <UserName_Check+0xa8>
+    20a8:	14 31       	cpi	r17, 0x14	; 20
+    20aa:	c8 f4       	brcc	.+50     	; 0x20de <UserName_Check+0xa8>
+    20ac:	80 91 81 02 	lds	r24, 0x0281
     20b0:	8d 30       	cpi	r24, 0x0D	; 13
-    20b2:	21 f0       	breq	.+8      	; 0x20bc <UserName_Check+0xc8>
-    20b4:	80 91 96 02 	lds	r24, 0x0296
+    20b2:	29 f1       	breq	.+74     	; 0x20fe <UserName_Check+0xc8>
+    20b4:	80 91 81 02 	lds	r24, 0x0281
     20b8:	8f 30       	cpi	r24, 0x0F	; 15
-    20ba:	41 f4       	brne	.+16     	; 0x20cc <UserName_Check+0xd8>
-    20bc:	8c e0       	ldi	r24, 0x0C	; 12
-    20be:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    20c2:	80 91 7f 02 	lds	r24, 0x027F
-    20c6:	18 17       	cp	r17, r24
-    20c8:	f9 f4       	brne	.+62     	; 0x2108 <UserName_Check+0x114>
-    20ca:	09 c0       	rjmp	.+18     	; 0x20de <UserName_Check+0xea>
-    20cc:	80 91 96 02 	lds	r24, 0x0296
-    20d0:	88 30       	cpi	r24, 0x08	; 8
-    20d2:	09 f0       	breq	.+2      	; 0x20d6 <UserName_Check+0xe2>
-    20d4:	a2 cf       	rjmp	.-188    	; 0x201a <UserName_Check+0x26>
-    20d6:	0e 94 34 0f 	call	0x1e68	; 0x1e68 <Clear_Char>
-    20da:	11 50       	subi	r17, 0x01	; 1
-    20dc:	9e cf       	rjmp	.-196    	; 0x201a <UserName_Check+0x26>
-    20de:	00 e0       	ldi	r16, 0x00	; 0
-    20e0:	0e c0       	rjmp	.+28     	; 0x20fe <UserName_Check+0x10a>
-    20e2:	80 2f       	mov	r24, r16
-    20e4:	90 e0       	ldi	r25, 0x00	; 0
-    20e6:	fc 01       	movw	r30, r24
-    20e8:	ef 57       	subi	r30, 0x7F	; 127
-    20ea:	fd 4f       	sbci	r31, 0xFD	; 253
-    20ec:	10 81       	ld	r17, Z
-    20ee:	81 96       	adiw	r24, 0x21	; 33
-    20f0:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    20f4:	18 17       	cp	r17, r24
-    20f6:	11 f0       	breq	.+4      	; 0x20fc <UserName_Check+0x108>
-    20f8:	10 92 73 02 	sts	0x0273, r1
-    20fc:	0f 5f       	subi	r16, 0xFF	; 255
-    20fe:	80 91 7f 02 	lds	r24, 0x027F
-    2102:	08 17       	cp	r16, r24
-    2104:	70 f3       	brcs	.-36     	; 0x20e2 <UserName_Check+0xee>
-    2106:	06 c0       	rjmp	.+12     	; 0x2114 <UserName_Check+0x120>
-    2108:	80 91 7f 02 	lds	r24, 0x027F
-    210c:	18 17       	cp	r17, r24
-    210e:	11 f0       	breq	.+4      	; 0x2114 <UserName_Check+0x120>
-    2110:	10 92 73 02 	sts	0x0273, r1
-    2114:	1f 91       	pop	r17
-    2116:	0f 91       	pop	r16
-    2118:	08 95       	ret
+    20ba:	09 f1       	breq	.+66     	; 0x20fe <UserName_Check+0xc8>
+    20bc:	80 91 81 02 	lds	r24, 0x0281
+    20c0:	88 30       	cpi	r24, 0x08	; 8
+    20c2:	51 f1       	breq	.+84     	; 0x2118 <UserName_Check+0xe2>
+    20c4:	80 91 81 02 	lds	r24, 0x0281
+    20c8:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    20cc:	e1 2f       	mov	r30, r17
+    20ce:	f0 e0       	ldi	r31, 0x00	; 0
+    20d0:	80 91 81 02 	lds	r24, 0x0281
+    20d4:	ee 57       	subi	r30, 0x7E	; 126
+    20d6:	fd 4f       	sbci	r31, 0xFD	; 253
+    20d8:	80 83       	st	Z, r24
+    20da:	1f 5f       	subi	r17, 0xFF	; 255
+    20dc:	bf cf       	rjmp	.-130    	; 0x205c <UserName_Check+0x26>
+    20de:	80 91 75 02 	lds	r24, 0x0275
+    20e2:	88 23       	and	r24, r24
+    20e4:	09 f0       	breq	.+2      	; 0x20e8 <UserName_Check+0xb2>
+    20e6:	ba cf       	rjmp	.-140    	; 0x205c <UserName_Check+0x26>
+    20e8:	14 31       	cpi	r17, 0x14	; 20
+    20ea:	08 f4       	brcc	.+2      	; 0x20ee <UserName_Check+0xb8>
+    20ec:	b7 cf       	rjmp	.-146    	; 0x205c <UserName_Check+0x26>
+    20ee:	80 91 81 02 	lds	r24, 0x0281
+    20f2:	8d 30       	cpi	r24, 0x0D	; 13
+    20f4:	21 f0       	breq	.+8      	; 0x20fe <UserName_Check+0xc8>
+    20f6:	80 91 81 02 	lds	r24, 0x0281
+    20fa:	8f 30       	cpi	r24, 0x0F	; 15
+    20fc:	41 f4       	brne	.+16     	; 0x210e <UserName_Check+0xd8>
+    20fe:	8c e0       	ldi	r24, 0x0C	; 12
+    2100:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    2104:	80 91 7f 02 	lds	r24, 0x027F
+    2108:	18 17       	cp	r17, r24
+    210a:	f9 f4       	brne	.+62     	; 0x214a <UserName_Check+0x114>
+    210c:	09 c0       	rjmp	.+18     	; 0x2120 <UserName_Check+0xea>
+    210e:	80 91 81 02 	lds	r24, 0x0281
+    2112:	88 30       	cpi	r24, 0x08	; 8
+    2114:	09 f0       	breq	.+2      	; 0x2118 <UserName_Check+0xe2>
+    2116:	a2 cf       	rjmp	.-188    	; 0x205c <UserName_Check+0x26>
+    2118:	0e 94 59 0f 	call	0x1eb2	; 0x1eb2 <Clear_Char>
+    211c:	11 50       	subi	r17, 0x01	; 1
+    211e:	9e cf       	rjmp	.-196    	; 0x205c <UserName_Check+0x26>
+    2120:	00 e0       	ldi	r16, 0x00	; 0
+    2122:	0e c0       	rjmp	.+28     	; 0x2140 <UserName_Check+0x10a>
+    2124:	80 2f       	mov	r24, r16
+    2126:	90 e0       	ldi	r25, 0x00	; 0
+    2128:	fc 01       	movw	r30, r24
+    212a:	ee 57       	subi	r30, 0x7E	; 126
+    212c:	fd 4f       	sbci	r31, 0xFD	; 253
+    212e:	10 81       	ld	r17, Z
+    2130:	81 96       	adiw	r24, 0x21	; 33
+    2132:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    2136:	18 17       	cp	r17, r24
+    2138:	11 f0       	breq	.+4      	; 0x213e <UserName_Check+0x108>
+    213a:	10 92 73 02 	sts	0x0273, r1
+    213e:	0f 5f       	subi	r16, 0xFF	; 255
+    2140:	80 91 7f 02 	lds	r24, 0x027F
+    2144:	08 17       	cp	r16, r24
+    2146:	70 f3       	brcs	.-36     	; 0x2124 <UserName_Check+0xee>
+    2148:	02 c0       	rjmp	.+4      	; 0x214e <UserName_Check+0x118>
+    214a:	10 92 73 02 	sts	0x0273, r1
+    214e:	1f 91       	pop	r17
+    2150:	0f 91       	pop	r16
+    2152:	08 95       	ret
 
-0000211a <Sign_In>:
-    211a:	0e 94 fa 0f 	call	0x1ff4	; 0x1ff4 <UserName_Check>
-    211e:	0e 94 66 0f 	call	0x1ecc	; 0x1ecc <PassWord_Check>
-    2122:	80 91 73 02 	lds	r24, 0x0273
-    2126:	88 23       	and	r24, r24
-    2128:	21 f0       	breq	.+8      	; 0x2132 <Sign_In+0x18>
-    212a:	80 91 74 02 	lds	r24, 0x0274
-    212e:	88 23       	and	r24, r24
-    2130:	d9 f5       	brne	.+118    	; 0x21a8 <Sign_In+0x8e>
-    2132:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    2136:	8b e8       	ldi	r24, 0x8B	; 139
-    2138:	90 e0       	ldi	r25, 0x00	; 0
-    213a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    213e:	82 e0       	ldi	r24, 0x02	; 2
-    2140:	61 e0       	ldi	r22, 0x01	; 1
-    2142:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2146:	8c e9       	ldi	r24, 0x9C	; 156
-    2148:	90 e0       	ldi	r25, 0x00	; 0
-    214a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    214e:	80 91 75 02 	lds	r24, 0x0275
-    2152:	81 50       	subi	r24, 0x01	; 1
-    2154:	80 93 75 02 	sts	0x0275, r24
-    2158:	60 91 75 02 	lds	r22, 0x0275
-    215c:	82 e1       	ldi	r24, 0x12	; 18
-    215e:	90 e0       	ldi	r25, 0x00	; 0
-    2160:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    2164:	80 91 75 02 	lds	r24, 0x0275
+00002154 <Sign_In>:
+    2154:	0e 94 1b 10 	call	0x2036	; 0x2036 <UserName_Check>
+    2158:	0e 94 8b 0f 	call	0x1f16	; 0x1f16 <PassWord_Check>
+    215c:	80 91 73 02 	lds	r24, 0x0273
+    2160:	88 23       	and	r24, r24
+    2162:	21 f0       	breq	.+8      	; 0x216c <Sign_In+0x18>
+    2164:	80 91 74 02 	lds	r24, 0x0274
     2168:	88 23       	and	r24, r24
-    216a:	71 f0       	breq	.+28     	; 0x2188 <Sign_In+0x6e>
-    216c:	83 e0       	ldi	r24, 0x03	; 3
-    216e:	61 e0       	ldi	r22, 0x01	; 1
-    2170:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2174:	88 ea       	ldi	r24, 0xA8	; 168
-    2176:	90 e0       	ldi	r25, 0x00	; 0
-    2178:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    217c:	80 91 75 02 	lds	r24, 0x0275
-    2180:	80 5d       	subi	r24, 0xD0	; 208
-    2182:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    2186:	08 95       	ret
-    2188:	80 91 75 02 	lds	r24, 0x0275
-    218c:	88 23       	and	r24, r24
-    218e:	19 f5       	brne	.+70     	; 0x21d6 <Sign_In+0xbc>
-    2190:	88 e8       	ldi	r24, 0x88	; 136
-    2192:	93 e1       	ldi	r25, 0x13	; 19
-    2194:	28 ec       	ldi	r18, 0xC8	; 200
-    2196:	30 e0       	ldi	r19, 0x00	; 0
-    2198:	f9 01       	movw	r30, r18
-    219a:	31 97       	sbiw	r30, 0x01	; 1
-    219c:	f1 f7       	brne	.-4      	; 0x219a <Sign_In+0x80>
-    219e:	01 97       	sbiw	r24, 0x01	; 1
-    21a0:	d9 f7       	brne	.-10     	; 0x2198 <Sign_In+0x7e>
-    21a2:	0e 94 3e 0f 	call	0x1e7c	; 0x1e7c <Error_TimeOut>
-    21a6:	08 95       	ret
-    21a8:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    21ac:	86 eb       	ldi	r24, 0xB6	; 182
-    21ae:	90 e0       	ldi	r25, 0x00	; 0
-    21b0:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    21b4:	82 e0       	ldi	r24, 0x02	; 2
-    21b6:	61 e0       	ldi	r22, 0x01	; 1
-    21b8:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    21bc:	83 ec       	ldi	r24, 0xC3	; 195
-    21be:	90 e0       	ldi	r25, 0x00	; 0
-    21c0:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    21c4:	80 e5       	ldi	r24, 0x50	; 80
-    21c6:	93 ec       	ldi	r25, 0xC3	; 195
-    21c8:	28 ec       	ldi	r18, 0xC8	; 200
-    21ca:	30 e0       	ldi	r19, 0x00	; 0
-    21cc:	f9 01       	movw	r30, r18
-    21ce:	31 97       	sbiw	r30, 0x01	; 1
-    21d0:	f1 f7       	brne	.-4      	; 0x21ce <Sign_In+0xb4>
-    21d2:	01 97       	sbiw	r24, 0x01	; 1
-    21d4:	d9 f7       	brne	.-10     	; 0x21cc <Sign_In+0xb2>
-    21d6:	08 95       	ret
+    216a:	a9 f5       	brne	.+106    	; 0x21d6 <Sign_In+0x82>
+    216c:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    2170:	83 e9       	ldi	r24, 0x93	; 147
+    2172:	90 e0       	ldi	r25, 0x00	; 0
+    2174:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2178:	82 e0       	ldi	r24, 0x02	; 2
+    217a:	61 e0       	ldi	r22, 0x01	; 1
+    217c:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2180:	84 ea       	ldi	r24, 0xA4	; 164
+    2182:	90 e0       	ldi	r25, 0x00	; 0
+    2184:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2188:	60 91 72 02 	lds	r22, 0x0272
+    218c:	61 50       	subi	r22, 0x01	; 1
+    218e:	60 93 72 02 	sts	0x0272, r22
+    2192:	82 e1       	ldi	r24, 0x12	; 18
+    2194:	90 e0       	ldi	r25, 0x00	; 0
+    2196:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    219a:	80 91 72 02 	lds	r24, 0x0272
+    219e:	88 23       	and	r24, r24
+    21a0:	71 f0       	breq	.+28     	; 0x21be <Sign_In+0x6a>
+    21a2:	83 e0       	ldi	r24, 0x03	; 3
+    21a4:	61 e0       	ldi	r22, 0x01	; 1
+    21a6:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    21aa:	80 eb       	ldi	r24, 0xB0	; 176
+    21ac:	90 e0       	ldi	r25, 0x00	; 0
+    21ae:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    21b2:	80 91 72 02 	lds	r24, 0x0272
+    21b6:	80 5d       	subi	r24, 0xD0	; 208
+    21b8:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    21bc:	08 95       	ret
+    21be:	88 e8       	ldi	r24, 0x88	; 136
+    21c0:	93 e1       	ldi	r25, 0x13	; 19
+    21c2:	28 ec       	ldi	r18, 0xC8	; 200
+    21c4:	30 e0       	ldi	r19, 0x00	; 0
+    21c6:	f9 01       	movw	r30, r18
+    21c8:	31 97       	sbiw	r30, 0x01	; 1
+    21ca:	f1 f7       	brne	.-4      	; 0x21c8 <Sign_In+0x74>
+    21cc:	01 97       	sbiw	r24, 0x01	; 1
+    21ce:	d9 f7       	brne	.-10     	; 0x21c6 <Sign_In+0x72>
+    21d0:	0e 94 63 0f 	call	0x1ec6	; 0x1ec6 <Error_TimeOut>
+    21d4:	08 95       	ret
+    21d6:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    21da:	8e eb       	ldi	r24, 0xBE	; 190
+    21dc:	90 e0       	ldi	r25, 0x00	; 0
+    21de:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    21e2:	82 e0       	ldi	r24, 0x02	; 2
+    21e4:	61 e0       	ldi	r22, 0x01	; 1
+    21e6:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    21ea:	8b ec       	ldi	r24, 0xCB	; 203
+    21ec:	90 e0       	ldi	r25, 0x00	; 0
+    21ee:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    21f2:	80 e5       	ldi	r24, 0x50	; 80
+    21f4:	93 ec       	ldi	r25, 0xC3	; 195
+    21f6:	28 ec       	ldi	r18, 0xC8	; 200
+    21f8:	30 e0       	ldi	r19, 0x00	; 0
+    21fa:	f9 01       	movw	r30, r18
+    21fc:	31 97       	sbiw	r30, 0x01	; 1
+    21fe:	f1 f7       	brne	.-4      	; 0x21fc <Sign_In+0xa8>
+    2200:	01 97       	sbiw	r24, 0x01	; 1
+    2202:	d9 f7       	brne	.-10     	; 0x21fa <Sign_In+0xa6>
+    2204:	08 95       	ret
 
-000021d8 <PassWord_Set>:
-    21d8:	ef 92       	push	r14
-    21da:	ff 92       	push	r15
-    21dc:	1f 93       	push	r17
-    21de:	cf 93       	push	r28
-    21e0:	df 93       	push	r29
-    21e2:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    21e6:	81 e0       	ldi	r24, 0x01	; 1
-    21e8:	65 e0       	ldi	r22, 0x05	; 5
-    21ea:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    21ee:	8b ec       	ldi	r24, 0xCB	; 203
-    21f0:	90 e0       	ldi	r25, 0x00	; 0
-    21f2:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    21f6:	82 e0       	ldi	r24, 0x02	; 2
-    21f8:	61 e0       	ldi	r22, 0x01	; 1
-    21fa:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    21fe:	88 ed       	ldi	r24, 0xD8	; 216
-    2200:	90 e0       	ldi	r25, 0x00	; 0
-    2202:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2206:	84 e0       	ldi	r24, 0x04	; 4
-    2208:	6f e0       	ldi	r22, 0x0F	; 15
-    220a:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    220e:	84 e0       	ldi	r24, 0x04	; 4
-    2210:	60 e1       	ldi	r22, 0x10	; 16
-    2212:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2216:	8a ee       	ldi	r24, 0xEA	; 234
-    2218:	90 e0       	ldi	r25, 0x00	; 0
-    221a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    221e:	83 e0       	ldi	r24, 0x03	; 3
-    2220:	61 e0       	ldi	r22, 0x01	; 1
-    2222:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2226:	10 92 80 02 	sts	0x0280, r1
-    222a:	80 91 80 02 	lds	r24, 0x0280
-    222e:	88 23       	and	r24, r24
-    2230:	09 f4       	brne	.+2      	; 0x2234 <PassWord_Set+0x5c>
-    2232:	50 c0       	rjmp	.+160    	; 0x22d4 <PassWord_Set+0xfc>
-    2234:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    2238:	80 ef       	ldi	r24, 0xF0	; 240
-    223a:	90 e0       	ldi	r25, 0x00	; 0
-    223c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2240:	82 e0       	ldi	r24, 0x02	; 2
-    2242:	61 e0       	ldi	r22, 0x01	; 1
-    2244:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2248:	81 e0       	ldi	r24, 0x01	; 1
-    224a:	91 e0       	ldi	r25, 0x01	; 1
-    224c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2250:	84 e0       	ldi	r24, 0x04	; 4
-    2252:	61 e0       	ldi	r22, 0x01	; 1
-    2254:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    2258:	84 e0       	ldi	r24, 0x04	; 4
-    225a:	62 e0       	ldi	r22, 0x02	; 2
-    225c:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2260:	82 e1       	ldi	r24, 0x12	; 18
-    2262:	91 e0       	ldi	r25, 0x01	; 1
-    2264:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2268:	86 e9       	ldi	r24, 0x96	; 150
-    226a:	92 e0       	ldi	r25, 0x02	; 2
-    226c:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    2270:	80 93 72 02 	sts	0x0272, r24
-    2274:	80 91 72 02 	lds	r24, 0x0272
-    2278:	88 23       	and	r24, r24
-    227a:	b1 f7       	brne	.-20     	; 0x2268 <PassWord_Set+0x90>
-    227c:	80 91 96 02 	lds	r24, 0x0296
-    2280:	8d 30       	cpi	r24, 0x0D	; 13
-    2282:	21 f0       	breq	.+8      	; 0x228c <PassWord_Set+0xb4>
-    2284:	80 91 96 02 	lds	r24, 0x0296
-    2288:	8f 30       	cpi	r24, 0x0F	; 15
-    228a:	71 f7       	brne	.-36     	; 0x2268 <PassWord_Set+0x90>
-    228c:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    2290:	81 e0       	ldi	r24, 0x01	; 1
-    2292:	65 e0       	ldi	r22, 0x05	; 5
-    2294:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2298:	8b ec       	ldi	r24, 0xCB	; 203
-    229a:	90 e0       	ldi	r25, 0x00	; 0
-    229c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    22a0:	82 e0       	ldi	r24, 0x02	; 2
-    22a2:	61 e0       	ldi	r22, 0x01	; 1
-    22a4:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    22a8:	88 ed       	ldi	r24, 0xD8	; 216
-    22aa:	90 e0       	ldi	r25, 0x00	; 0
-    22ac:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    22b0:	84 e0       	ldi	r24, 0x04	; 4
-    22b2:	6f e0       	ldi	r22, 0x0F	; 15
-    22b4:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    22b8:	84 e0       	ldi	r24, 0x04	; 4
-    22ba:	60 e1       	ldi	r22, 0x10	; 16
-    22bc:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    22c0:	8a ee       	ldi	r24, 0xEA	; 234
-    22c2:	90 e0       	ldi	r25, 0x00	; 0
-    22c4:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    22c8:	83 e0       	ldi	r24, 0x03	; 3
-    22ca:	61 e0       	ldi	r22, 0x01	; 1
-    22cc:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    22d0:	10 92 80 02 	sts	0x0280, r1
-    22d4:	8e e0       	ldi	r24, 0x0E	; 14
-    22d6:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    22da:	86 e9       	ldi	r24, 0x96	; 150
-    22dc:	92 e0       	ldi	r25, 0x02	; 2
-    22de:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    22e2:	80 93 72 02 	sts	0x0272, r24
-    22e6:	80 91 72 02 	lds	r24, 0x0272
-    22ea:	88 23       	and	r24, r24
-    22ec:	89 f4       	brne	.+34     	; 0x2310 <PassWord_Set+0x138>
-    22ee:	80 91 80 02 	lds	r24, 0x0280
-    22f2:	88 23       	and	r24, r24
-    22f4:	69 f4       	brne	.+26     	; 0x2310 <PassWord_Set+0x138>
-    22f6:	80 91 96 02 	lds	r24, 0x0296
-    22fa:	8d 30       	cpi	r24, 0x0D	; 13
-    22fc:	71 f3       	breq	.-36     	; 0x22da <PassWord_Set+0x102>
-    22fe:	80 91 96 02 	lds	r24, 0x0296
-    2302:	8f 30       	cpi	r24, 0x0F	; 15
-    2304:	51 f3       	breq	.-44     	; 0x22da <PassWord_Set+0x102>
-    2306:	80 91 96 02 	lds	r24, 0x0296
-    230a:	88 30       	cpi	r24, 0x08	; 8
-    230c:	31 f3       	breq	.-52     	; 0x22da <PassWord_Set+0x102>
-    230e:	14 c0       	rjmp	.+40     	; 0x2338 <PassWord_Set+0x160>
-    2310:	80 91 72 02 	lds	r24, 0x0272
-    2314:	88 23       	and	r24, r24
-    2316:	09 f5       	brne	.+66     	; 0x235a <PassWord_Set+0x182>
-    2318:	80 91 80 02 	lds	r24, 0x0280
-    231c:	84 31       	cpi	r24, 0x14	; 20
-    231e:	e8 f4       	brcc	.+58     	; 0x235a <PassWord_Set+0x182>
-    2320:	80 91 96 02 	lds	r24, 0x0296
-    2324:	8d 30       	cpi	r24, 0x0D	; 13
-    2326:	59 f1       	breq	.+86     	; 0x237e <PassWord_Set+0x1a6>
-    2328:	80 91 96 02 	lds	r24, 0x0296
-    232c:	8f 30       	cpi	r24, 0x0F	; 15
-    232e:	39 f1       	breq	.+78     	; 0x237e <PassWord_Set+0x1a6>
-    2330:	80 91 96 02 	lds	r24, 0x0296
-    2334:	88 30       	cpi	r24, 0x08	; 8
-    2336:	89 f1       	breq	.+98     	; 0x239a <PassWord_Set+0x1c2>
-    2338:	80 91 96 02 	lds	r24, 0x0296
-    233c:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    2340:	80 91 80 02 	lds	r24, 0x0280
-    2344:	60 91 96 02 	lds	r22, 0x0296
-    2348:	90 e0       	ldi	r25, 0x00	; 0
-    234a:	8f 5b       	subi	r24, 0xBF	; 191
-    234c:	9f 4f       	sbci	r25, 0xFF	; 255
-    234e:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    2352:	80 91 80 02 	lds	r24, 0x0280
-    2356:	8f 5f       	subi	r24, 0xFF	; 255
-    2358:	25 c0       	rjmp	.+74     	; 0x23a4 <PassWord_Set+0x1cc>
-    235a:	80 91 72 02 	lds	r24, 0x0272
-    235e:	88 23       	and	r24, r24
-    2360:	09 f0       	breq	.+2      	; 0x2364 <PassWord_Set+0x18c>
-    2362:	bb cf       	rjmp	.-138    	; 0x22da <PassWord_Set+0x102>
-    2364:	80 91 80 02 	lds	r24, 0x0280
-    2368:	84 31       	cpi	r24, 0x14	; 20
-    236a:	08 f4       	brcc	.+2      	; 0x236e <PassWord_Set+0x196>
-    236c:	b6 cf       	rjmp	.-148    	; 0x22da <PassWord_Set+0x102>
-    236e:	80 91 96 02 	lds	r24, 0x0296
-    2372:	8d 30       	cpi	r24, 0x0D	; 13
-    2374:	21 f0       	breq	.+8      	; 0x237e <PassWord_Set+0x1a6>
-    2376:	80 91 96 02 	lds	r24, 0x0296
-    237a:	8f 30       	cpi	r24, 0x0F	; 15
-    237c:	49 f4       	brne	.+18     	; 0x2390 <PassWord_Set+0x1b8>
-    237e:	8c e0       	ldi	r24, 0x0C	; 12
-    2380:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    2384:	80 91 80 02 	lds	r24, 0x0280
-    2388:	86 30       	cpi	r24, 0x06	; 6
-    238a:	08 f4       	brcc	.+2      	; 0x238e <PassWord_Set+0x1b6>
-    238c:	4e cf       	rjmp	.-356    	; 0x222a <PassWord_Set+0x52>
-    238e:	0d c0       	rjmp	.+26     	; 0x23aa <PassWord_Set+0x1d2>
-    2390:	80 91 96 02 	lds	r24, 0x0296
-    2394:	88 30       	cpi	r24, 0x08	; 8
-    2396:	09 f0       	breq	.+2      	; 0x239a <PassWord_Set+0x1c2>
-    2398:	a0 cf       	rjmp	.-192    	; 0x22da <PassWord_Set+0x102>
-    239a:	0e 94 34 0f 	call	0x1e68	; 0x1e68 <Clear_Char>
-    239e:	80 91 80 02 	lds	r24, 0x0280
-    23a2:	81 50       	subi	r24, 0x01	; 1
-    23a4:	80 93 80 02 	sts	0x0280, r24
-    23a8:	98 cf       	rjmp	.-208    	; 0x22da <PassWord_Set+0x102>
-    23aa:	10 e0       	ldi	r17, 0x00	; 0
-    23ac:	85 e1       	ldi	r24, 0x15	; 21
-    23ae:	e8 2e       	mov	r14, r24
-    23b0:	f1 2c       	mov	r15, r1
-    23b2:	c0 e6       	ldi	r28, 0x60	; 96
-    23b4:	d0 e0       	ldi	r29, 0x00	; 0
-    23b6:	07 c0       	rjmp	.+14     	; 0x23c6 <PassWord_Set+0x1ee>
-    23b8:	ce 01       	movw	r24, r28
-    23ba:	82 1b       	sub	r24, r18
-    23bc:	93 0b       	sbc	r25, r19
-    23be:	6f ef       	ldi	r22, 0xFF	; 255
-    23c0:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    23c4:	1f 5f       	subi	r17, 0xFF	; 255
-    23c6:	21 2f       	mov	r18, r17
-    23c8:	30 e0       	ldi	r19, 0x00	; 0
-    23ca:	80 91 80 02 	lds	r24, 0x0280
-    23ce:	a7 01       	movw	r20, r14
-    23d0:	48 1b       	sub	r20, r24
-    23d2:	51 09       	sbc	r21, r1
-    23d4:	24 17       	cp	r18, r20
-    23d6:	35 07       	cpc	r19, r21
-    23d8:	7c f3       	brlt	.-34     	; 0x23b8 <PassWord_Set+0x1e0>
-    23da:	81 e1       	ldi	r24, 0x11	; 17
-    23dc:	90 e0       	ldi	r25, 0x00	; 0
-    23de:	60 e0       	ldi	r22, 0x00	; 0
-    23e0:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    23e4:	60 91 80 02 	lds	r22, 0x0280
-    23e8:	84 e1       	ldi	r24, 0x14	; 20
-    23ea:	90 e0       	ldi	r25, 0x00	; 0
-    23ec:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    23f0:	df 91       	pop	r29
-    23f2:	cf 91       	pop	r28
-    23f4:	1f 91       	pop	r17
-    23f6:	ff 90       	pop	r15
-    23f8:	ef 90       	pop	r14
-    23fa:	08 95       	ret
+00002206 <PassWord_Set>:
+    2206:	ef 92       	push	r14
+    2208:	ff 92       	push	r15
+    220a:	1f 93       	push	r17
+    220c:	cf 93       	push	r28
+    220e:	df 93       	push	r29
+    2210:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    2214:	81 e0       	ldi	r24, 0x01	; 1
+    2216:	65 e0       	ldi	r22, 0x05	; 5
+    2218:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    221c:	83 ed       	ldi	r24, 0xD3	; 211
+    221e:	90 e0       	ldi	r25, 0x00	; 0
+    2220:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2224:	82 e0       	ldi	r24, 0x02	; 2
+    2226:	61 e0       	ldi	r22, 0x01	; 1
+    2228:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    222c:	80 ee       	ldi	r24, 0xE0	; 224
+    222e:	90 e0       	ldi	r25, 0x00	; 0
+    2230:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2234:	84 e0       	ldi	r24, 0x04	; 4
+    2236:	6f e0       	ldi	r22, 0x0F	; 15
+    2238:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    223c:	84 e0       	ldi	r24, 0x04	; 4
+    223e:	60 e1       	ldi	r22, 0x10	; 16
+    2240:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2244:	82 ef       	ldi	r24, 0xF2	; 242
+    2246:	90 e0       	ldi	r25, 0x00	; 0
+    2248:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    224c:	83 e0       	ldi	r24, 0x03	; 3
+    224e:	61 e0       	ldi	r22, 0x01	; 1
+    2250:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2254:	10 92 80 02 	sts	0x0280, r1
+    2258:	80 91 80 02 	lds	r24, 0x0280
+    225c:	88 23       	and	r24, r24
+    225e:	09 f4       	brne	.+2      	; 0x2262 <PassWord_Set+0x5c>
+    2260:	50 c0       	rjmp	.+160    	; 0x2302 <PassWord_Set+0xfc>
+    2262:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    2266:	88 ef       	ldi	r24, 0xF8	; 248
+    2268:	90 e0       	ldi	r25, 0x00	; 0
+    226a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    226e:	82 e0       	ldi	r24, 0x02	; 2
+    2270:	61 e0       	ldi	r22, 0x01	; 1
+    2272:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2276:	89 e0       	ldi	r24, 0x09	; 9
+    2278:	91 e0       	ldi	r25, 0x01	; 1
+    227a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    227e:	84 e0       	ldi	r24, 0x04	; 4
+    2280:	61 e0       	ldi	r22, 0x01	; 1
+    2282:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    2286:	84 e0       	ldi	r24, 0x04	; 4
+    2288:	62 e0       	ldi	r22, 0x02	; 2
+    228a:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    228e:	8a e1       	ldi	r24, 0x1A	; 26
+    2290:	91 e0       	ldi	r25, 0x01	; 1
+    2292:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2296:	81 e8       	ldi	r24, 0x81	; 129
+    2298:	92 e0       	ldi	r25, 0x02	; 2
+    229a:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    229e:	80 93 75 02 	sts	0x0275, r24
+    22a2:	80 91 75 02 	lds	r24, 0x0275
+    22a6:	88 23       	and	r24, r24
+    22a8:	b1 f7       	brne	.-20     	; 0x2296 <PassWord_Set+0x90>
+    22aa:	80 91 81 02 	lds	r24, 0x0281
+    22ae:	8d 30       	cpi	r24, 0x0D	; 13
+    22b0:	21 f0       	breq	.+8      	; 0x22ba <PassWord_Set+0xb4>
+    22b2:	80 91 81 02 	lds	r24, 0x0281
+    22b6:	8f 30       	cpi	r24, 0x0F	; 15
+    22b8:	71 f7       	brne	.-36     	; 0x2296 <PassWord_Set+0x90>
+    22ba:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    22be:	81 e0       	ldi	r24, 0x01	; 1
+    22c0:	65 e0       	ldi	r22, 0x05	; 5
+    22c2:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    22c6:	83 ed       	ldi	r24, 0xD3	; 211
+    22c8:	90 e0       	ldi	r25, 0x00	; 0
+    22ca:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    22ce:	82 e0       	ldi	r24, 0x02	; 2
+    22d0:	61 e0       	ldi	r22, 0x01	; 1
+    22d2:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    22d6:	80 ee       	ldi	r24, 0xE0	; 224
+    22d8:	90 e0       	ldi	r25, 0x00	; 0
+    22da:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    22de:	84 e0       	ldi	r24, 0x04	; 4
+    22e0:	6f e0       	ldi	r22, 0x0F	; 15
+    22e2:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    22e6:	84 e0       	ldi	r24, 0x04	; 4
+    22e8:	60 e1       	ldi	r22, 0x10	; 16
+    22ea:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    22ee:	82 ef       	ldi	r24, 0xF2	; 242
+    22f0:	90 e0       	ldi	r25, 0x00	; 0
+    22f2:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    22f6:	83 e0       	ldi	r24, 0x03	; 3
+    22f8:	61 e0       	ldi	r22, 0x01	; 1
+    22fa:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    22fe:	10 92 80 02 	sts	0x0280, r1
+    2302:	8e e0       	ldi	r24, 0x0E	; 14
+    2304:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    2308:	81 e8       	ldi	r24, 0x81	; 129
+    230a:	92 e0       	ldi	r25, 0x02	; 2
+    230c:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    2310:	80 93 75 02 	sts	0x0275, r24
+    2314:	80 91 75 02 	lds	r24, 0x0275
+    2318:	88 23       	and	r24, r24
+    231a:	89 f4       	brne	.+34     	; 0x233e <PassWord_Set+0x138>
+    231c:	80 91 80 02 	lds	r24, 0x0280
+    2320:	88 23       	and	r24, r24
+    2322:	69 f4       	brne	.+26     	; 0x233e <PassWord_Set+0x138>
+    2324:	80 91 81 02 	lds	r24, 0x0281
+    2328:	8d 30       	cpi	r24, 0x0D	; 13
+    232a:	71 f3       	breq	.-36     	; 0x2308 <PassWord_Set+0x102>
+    232c:	80 91 81 02 	lds	r24, 0x0281
+    2330:	8f 30       	cpi	r24, 0x0F	; 15
+    2332:	51 f3       	breq	.-44     	; 0x2308 <PassWord_Set+0x102>
+    2334:	80 91 81 02 	lds	r24, 0x0281
+    2338:	88 30       	cpi	r24, 0x08	; 8
+    233a:	31 f3       	breq	.-52     	; 0x2308 <PassWord_Set+0x102>
+    233c:	14 c0       	rjmp	.+40     	; 0x2366 <PassWord_Set+0x160>
+    233e:	80 91 75 02 	lds	r24, 0x0275
+    2342:	88 23       	and	r24, r24
+    2344:	09 f5       	brne	.+66     	; 0x2388 <PassWord_Set+0x182>
+    2346:	80 91 80 02 	lds	r24, 0x0280
+    234a:	84 31       	cpi	r24, 0x14	; 20
+    234c:	e8 f4       	brcc	.+58     	; 0x2388 <PassWord_Set+0x182>
+    234e:	80 91 81 02 	lds	r24, 0x0281
+    2352:	8d 30       	cpi	r24, 0x0D	; 13
+    2354:	59 f1       	breq	.+86     	; 0x23ac <PassWord_Set+0x1a6>
+    2356:	80 91 81 02 	lds	r24, 0x0281
+    235a:	8f 30       	cpi	r24, 0x0F	; 15
+    235c:	39 f1       	breq	.+78     	; 0x23ac <PassWord_Set+0x1a6>
+    235e:	80 91 81 02 	lds	r24, 0x0281
+    2362:	88 30       	cpi	r24, 0x08	; 8
+    2364:	89 f1       	breq	.+98     	; 0x23c8 <PassWord_Set+0x1c2>
+    2366:	80 91 81 02 	lds	r24, 0x0281
+    236a:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    236e:	60 91 81 02 	lds	r22, 0x0281
+    2372:	80 91 80 02 	lds	r24, 0x0280
+    2376:	90 e0       	ldi	r25, 0x00	; 0
+    2378:	8f 5b       	subi	r24, 0xBF	; 191
+    237a:	9f 4f       	sbci	r25, 0xFF	; 255
+    237c:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    2380:	80 91 80 02 	lds	r24, 0x0280
+    2384:	8f 5f       	subi	r24, 0xFF	; 255
+    2386:	25 c0       	rjmp	.+74     	; 0x23d2 <PassWord_Set+0x1cc>
+    2388:	80 91 75 02 	lds	r24, 0x0275
+    238c:	88 23       	and	r24, r24
+    238e:	09 f0       	breq	.+2      	; 0x2392 <PassWord_Set+0x18c>
+    2390:	bb cf       	rjmp	.-138    	; 0x2308 <PassWord_Set+0x102>
+    2392:	80 91 80 02 	lds	r24, 0x0280
+    2396:	84 31       	cpi	r24, 0x14	; 20
+    2398:	08 f4       	brcc	.+2      	; 0x239c <PassWord_Set+0x196>
+    239a:	b6 cf       	rjmp	.-148    	; 0x2308 <PassWord_Set+0x102>
+    239c:	80 91 81 02 	lds	r24, 0x0281
+    23a0:	8d 30       	cpi	r24, 0x0D	; 13
+    23a2:	21 f0       	breq	.+8      	; 0x23ac <PassWord_Set+0x1a6>
+    23a4:	80 91 81 02 	lds	r24, 0x0281
+    23a8:	8f 30       	cpi	r24, 0x0F	; 15
+    23aa:	49 f4       	brne	.+18     	; 0x23be <PassWord_Set+0x1b8>
+    23ac:	8c e0       	ldi	r24, 0x0C	; 12
+    23ae:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    23b2:	80 91 80 02 	lds	r24, 0x0280
+    23b6:	86 30       	cpi	r24, 0x06	; 6
+    23b8:	08 f4       	brcc	.+2      	; 0x23bc <PassWord_Set+0x1b6>
+    23ba:	4e cf       	rjmp	.-356    	; 0x2258 <PassWord_Set+0x52>
+    23bc:	0d c0       	rjmp	.+26     	; 0x23d8 <PassWord_Set+0x1d2>
+    23be:	80 91 81 02 	lds	r24, 0x0281
+    23c2:	88 30       	cpi	r24, 0x08	; 8
+    23c4:	09 f0       	breq	.+2      	; 0x23c8 <PassWord_Set+0x1c2>
+    23c6:	a0 cf       	rjmp	.-192    	; 0x2308 <PassWord_Set+0x102>
+    23c8:	0e 94 59 0f 	call	0x1eb2	; 0x1eb2 <Clear_Char>
+    23cc:	80 91 80 02 	lds	r24, 0x0280
+    23d0:	81 50       	subi	r24, 0x01	; 1
+    23d2:	80 93 80 02 	sts	0x0280, r24
+    23d6:	98 cf       	rjmp	.-208    	; 0x2308 <PassWord_Set+0x102>
+    23d8:	10 e0       	ldi	r17, 0x00	; 0
+    23da:	85 e1       	ldi	r24, 0x15	; 21
+    23dc:	e8 2e       	mov	r14, r24
+    23de:	f1 2c       	mov	r15, r1
+    23e0:	c0 e6       	ldi	r28, 0x60	; 96
+    23e2:	d0 e0       	ldi	r29, 0x00	; 0
+    23e4:	07 c0       	rjmp	.+14     	; 0x23f4 <PassWord_Set+0x1ee>
+    23e6:	ce 01       	movw	r24, r28
+    23e8:	82 1b       	sub	r24, r18
+    23ea:	93 0b       	sbc	r25, r19
+    23ec:	6f ef       	ldi	r22, 0xFF	; 255
+    23ee:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    23f2:	1f 5f       	subi	r17, 0xFF	; 255
+    23f4:	21 2f       	mov	r18, r17
+    23f6:	30 e0       	ldi	r19, 0x00	; 0
+    23f8:	80 91 80 02 	lds	r24, 0x0280
+    23fc:	a7 01       	movw	r20, r14
+    23fe:	48 1b       	sub	r20, r24
+    2400:	51 09       	sbc	r21, r1
+    2402:	24 17       	cp	r18, r20
+    2404:	35 07       	cpc	r19, r21
+    2406:	7c f3       	brlt	.-34     	; 0x23e6 <PassWord_Set+0x1e0>
+    2408:	81 e1       	ldi	r24, 0x11	; 17
+    240a:	90 e0       	ldi	r25, 0x00	; 0
+    240c:	60 e0       	ldi	r22, 0x00	; 0
+    240e:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    2412:	84 e1       	ldi	r24, 0x14	; 20
+    2414:	90 e0       	ldi	r25, 0x00	; 0
+    2416:	60 91 80 02 	lds	r22, 0x0280
+    241a:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    241e:	df 91       	pop	r29
+    2420:	cf 91       	pop	r28
+    2422:	1f 91       	pop	r17
+    2424:	ff 90       	pop	r15
+    2426:	ef 90       	pop	r14
+    2428:	08 95       	ret
 
-000023fc <UserName_Set>:
-    23fc:	ef 92       	push	r14
-    23fe:	ff 92       	push	r15
-    2400:	1f 93       	push	r17
-    2402:	cf 93       	push	r28
-    2404:	df 93       	push	r29
-    2406:	83 e1       	ldi	r24, 0x13	; 19
-    2408:	90 e0       	ldi	r25, 0x00	; 0
-    240a:	60 e0       	ldi	r22, 0x00	; 0
-    240c:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    2410:	83 e1       	ldi	r24, 0x13	; 19
-    2412:	90 e0       	ldi	r25, 0x00	; 0
-    2414:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    2418:	80 93 7f 02 	sts	0x027F, r24
-    241c:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    2420:	81 e0       	ldi	r24, 0x01	; 1
-    2422:	65 e0       	ldi	r22, 0x05	; 5
-    2424:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2428:	8a e1       	ldi	r24, 0x1A	; 26
-    242a:	91 e0       	ldi	r25, 0x01	; 1
-    242c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2430:	82 e0       	ldi	r24, 0x02	; 2
-    2432:	61 e0       	ldi	r22, 0x01	; 1
-    2434:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2438:	88 ed       	ldi	r24, 0xD8	; 216
-    243a:	90 e0       	ldi	r25, 0x00	; 0
-    243c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2440:	84 e0       	ldi	r24, 0x04	; 4
-    2442:	6f e0       	ldi	r22, 0x0F	; 15
-    2444:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    2448:	84 e0       	ldi	r24, 0x04	; 4
-    244a:	60 e1       	ldi	r22, 0x10	; 16
-    244c:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2450:	8a ee       	ldi	r24, 0xEA	; 234
-    2452:	90 e0       	ldi	r25, 0x00	; 0
-    2454:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2458:	83 e0       	ldi	r24, 0x03	; 3
-    245a:	61 e0       	ldi	r22, 0x01	; 1
-    245c:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2460:	10 92 7f 02 	sts	0x027F, r1
-    2464:	80 91 7f 02 	lds	r24, 0x027F
-    2468:	88 23       	and	r24, r24
-    246a:	09 f4       	brne	.+2      	; 0x246e <UserName_Set+0x72>
-    246c:	50 c0       	rjmp	.+160    	; 0x250e <UserName_Set+0x112>
-    246e:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    2472:	87 e2       	ldi	r24, 0x27	; 39
-    2474:	91 e0       	ldi	r25, 0x01	; 1
-    2476:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    247a:	82 e0       	ldi	r24, 0x02	; 2
-    247c:	61 e0       	ldi	r22, 0x01	; 1
-    247e:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2482:	81 e0       	ldi	r24, 0x01	; 1
-    2484:	91 e0       	ldi	r25, 0x01	; 1
-    2486:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    248a:	84 e0       	ldi	r24, 0x04	; 4
-    248c:	61 e0       	ldi	r22, 0x01	; 1
-    248e:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    2492:	84 e0       	ldi	r24, 0x04	; 4
-    2494:	62 e0       	ldi	r22, 0x02	; 2
-    2496:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    249a:	82 e1       	ldi	r24, 0x12	; 18
-    249c:	91 e0       	ldi	r25, 0x01	; 1
-    249e:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    24a2:	86 e9       	ldi	r24, 0x96	; 150
-    24a4:	92 e0       	ldi	r25, 0x02	; 2
-    24a6:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    24aa:	80 93 72 02 	sts	0x0272, r24
-    24ae:	80 91 72 02 	lds	r24, 0x0272
-    24b2:	88 23       	and	r24, r24
-    24b4:	b1 f7       	brne	.-20     	; 0x24a2 <UserName_Set+0xa6>
-    24b6:	80 91 96 02 	lds	r24, 0x0296
-    24ba:	8d 30       	cpi	r24, 0x0D	; 13
-    24bc:	21 f0       	breq	.+8      	; 0x24c6 <UserName_Set+0xca>
-    24be:	80 91 96 02 	lds	r24, 0x0296
-    24c2:	8f 30       	cpi	r24, 0x0F	; 15
-    24c4:	71 f7       	brne	.-36     	; 0x24a2 <UserName_Set+0xa6>
-    24c6:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    24ca:	81 e0       	ldi	r24, 0x01	; 1
-    24cc:	65 e0       	ldi	r22, 0x05	; 5
-    24ce:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    24d2:	8a e1       	ldi	r24, 0x1A	; 26
-    24d4:	91 e0       	ldi	r25, 0x01	; 1
-    24d6:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    24da:	82 e0       	ldi	r24, 0x02	; 2
-    24dc:	61 e0       	ldi	r22, 0x01	; 1
-    24de:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    24e2:	88 ed       	ldi	r24, 0xD8	; 216
-    24e4:	90 e0       	ldi	r25, 0x00	; 0
-    24e6:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    24ea:	84 e0       	ldi	r24, 0x04	; 4
-    24ec:	6f e0       	ldi	r22, 0x0F	; 15
-    24ee:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
-    24f2:	84 e0       	ldi	r24, 0x04	; 4
-    24f4:	60 e1       	ldi	r22, 0x10	; 16
-    24f6:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    24fa:	8a ee       	ldi	r24, 0xEA	; 234
-    24fc:	90 e0       	ldi	r25, 0x00	; 0
-    24fe:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2502:	83 e0       	ldi	r24, 0x03	; 3
-    2504:	61 e0       	ldi	r22, 0x01	; 1
-    2506:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    250a:	10 92 7f 02 	sts	0x027F, r1
-    250e:	8e e0       	ldi	r24, 0x0E	; 14
-    2510:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    2514:	86 e9       	ldi	r24, 0x96	; 150
-    2516:	92 e0       	ldi	r25, 0x02	; 2
-    2518:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    251c:	80 93 72 02 	sts	0x0272, r24
-    2520:	80 91 72 02 	lds	r24, 0x0272
-    2524:	88 23       	and	r24, r24
-    2526:	89 f4       	brne	.+34     	; 0x254a <UserName_Set+0x14e>
-    2528:	80 91 7f 02 	lds	r24, 0x027F
-    252c:	88 23       	and	r24, r24
-    252e:	69 f4       	brne	.+26     	; 0x254a <UserName_Set+0x14e>
-    2530:	80 91 96 02 	lds	r24, 0x0296
-    2534:	8d 30       	cpi	r24, 0x0D	; 13
-    2536:	71 f3       	breq	.-36     	; 0x2514 <UserName_Set+0x118>
-    2538:	80 91 96 02 	lds	r24, 0x0296
-    253c:	8f 30       	cpi	r24, 0x0F	; 15
-    253e:	51 f3       	breq	.-44     	; 0x2514 <UserName_Set+0x118>
-    2540:	80 91 96 02 	lds	r24, 0x0296
-    2544:	88 30       	cpi	r24, 0x08	; 8
-    2546:	31 f3       	breq	.-52     	; 0x2514 <UserName_Set+0x118>
-    2548:	14 c0       	rjmp	.+40     	; 0x2572 <UserName_Set+0x176>
-    254a:	80 91 72 02 	lds	r24, 0x0272
-    254e:	88 23       	and	r24, r24
-    2550:	01 f5       	brne	.+64     	; 0x2592 <UserName_Set+0x196>
-    2552:	80 91 7f 02 	lds	r24, 0x027F
-    2556:	84 31       	cpi	r24, 0x14	; 20
-    2558:	e0 f4       	brcc	.+56     	; 0x2592 <UserName_Set+0x196>
-    255a:	80 91 96 02 	lds	r24, 0x0296
-    255e:	8d 30       	cpi	r24, 0x0D	; 13
-    2560:	51 f1       	breq	.+84     	; 0x25b6 <UserName_Set+0x1ba>
-    2562:	80 91 96 02 	lds	r24, 0x0296
-    2566:	8f 30       	cpi	r24, 0x0F	; 15
-    2568:	31 f1       	breq	.+76     	; 0x25b6 <UserName_Set+0x1ba>
-    256a:	80 91 96 02 	lds	r24, 0x0296
-    256e:	88 30       	cpi	r24, 0x08	; 8
-    2570:	81 f1       	breq	.+96     	; 0x25d2 <UserName_Set+0x1d6>
-    2572:	80 91 96 02 	lds	r24, 0x0296
-    2576:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
-    257a:	80 91 7f 02 	lds	r24, 0x027F
-    257e:	60 91 96 02 	lds	r22, 0x0296
-    2582:	90 e0       	ldi	r25, 0x00	; 0
-    2584:	81 96       	adiw	r24, 0x21	; 33
-    2586:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    258a:	80 91 7f 02 	lds	r24, 0x027F
-    258e:	8f 5f       	subi	r24, 0xFF	; 255
-    2590:	25 c0       	rjmp	.+74     	; 0x25dc <UserName_Set+0x1e0>
-    2592:	80 91 72 02 	lds	r24, 0x0272
-    2596:	88 23       	and	r24, r24
-    2598:	09 f0       	breq	.+2      	; 0x259c <UserName_Set+0x1a0>
-    259a:	bc cf       	rjmp	.-136    	; 0x2514 <UserName_Set+0x118>
-    259c:	80 91 7f 02 	lds	r24, 0x027F
-    25a0:	84 31       	cpi	r24, 0x14	; 20
-    25a2:	08 f4       	brcc	.+2      	; 0x25a6 <UserName_Set+0x1aa>
-    25a4:	b7 cf       	rjmp	.-146    	; 0x2514 <UserName_Set+0x118>
-    25a6:	80 91 96 02 	lds	r24, 0x0296
-    25aa:	8d 30       	cpi	r24, 0x0D	; 13
-    25ac:	21 f0       	breq	.+8      	; 0x25b6 <UserName_Set+0x1ba>
-    25ae:	80 91 96 02 	lds	r24, 0x0296
-    25b2:	8f 30       	cpi	r24, 0x0F	; 15
-    25b4:	49 f4       	brne	.+18     	; 0x25c8 <UserName_Set+0x1cc>
-    25b6:	8c e0       	ldi	r24, 0x0C	; 12
-    25b8:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
-    25bc:	80 91 7f 02 	lds	r24, 0x027F
-    25c0:	86 30       	cpi	r24, 0x06	; 6
-    25c2:	08 f4       	brcc	.+2      	; 0x25c6 <UserName_Set+0x1ca>
-    25c4:	4f cf       	rjmp	.-354    	; 0x2464 <UserName_Set+0x68>
-    25c6:	0d c0       	rjmp	.+26     	; 0x25e2 <UserName_Set+0x1e6>
-    25c8:	80 91 96 02 	lds	r24, 0x0296
-    25cc:	88 30       	cpi	r24, 0x08	; 8
-    25ce:	09 f0       	breq	.+2      	; 0x25d2 <UserName_Set+0x1d6>
-    25d0:	a1 cf       	rjmp	.-190    	; 0x2514 <UserName_Set+0x118>
-    25d2:	0e 94 34 0f 	call	0x1e68	; 0x1e68 <Clear_Char>
-    25d6:	80 91 7f 02 	lds	r24, 0x027F
-    25da:	81 50       	subi	r24, 0x01	; 1
-    25dc:	80 93 7f 02 	sts	0x027F, r24
-    25e0:	99 cf       	rjmp	.-206    	; 0x2514 <UserName_Set+0x118>
-    25e2:	10 e0       	ldi	r17, 0x00	; 0
-    25e4:	95 e1       	ldi	r25, 0x15	; 21
-    25e6:	e9 2e       	mov	r14, r25
-    25e8:	f1 2c       	mov	r15, r1
-    25ea:	c0 e4       	ldi	r28, 0x40	; 64
-    25ec:	d0 e0       	ldi	r29, 0x00	; 0
-    25ee:	07 c0       	rjmp	.+14     	; 0x25fe <UserName_Set+0x202>
-    25f0:	ce 01       	movw	r24, r28
-    25f2:	82 1b       	sub	r24, r18
-    25f4:	93 0b       	sbc	r25, r19
-    25f6:	6f ef       	ldi	r22, 0xFF	; 255
-    25f8:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    25fc:	1f 5f       	subi	r17, 0xFF	; 255
-    25fe:	21 2f       	mov	r18, r17
-    2600:	30 e0       	ldi	r19, 0x00	; 0
-    2602:	80 91 7f 02 	lds	r24, 0x027F
-    2606:	a7 01       	movw	r20, r14
-    2608:	48 1b       	sub	r20, r24
-    260a:	51 09       	sbc	r21, r1
-    260c:	24 17       	cp	r18, r20
-    260e:	35 07       	cpc	r19, r21
-    2610:	7c f3       	brlt	.-34     	; 0x25f0 <UserName_Set+0x1f4>
-    2612:	80 e1       	ldi	r24, 0x10	; 16
-    2614:	90 e0       	ldi	r25, 0x00	; 0
-    2616:	60 e0       	ldi	r22, 0x00	; 0
-    2618:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    261c:	60 91 7f 02 	lds	r22, 0x027F
-    2620:	83 e1       	ldi	r24, 0x13	; 19
-    2622:	90 e0       	ldi	r25, 0x00	; 0
-    2624:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
-    2628:	df 91       	pop	r29
-    262a:	cf 91       	pop	r28
-    262c:	1f 91       	pop	r17
-    262e:	ff 90       	pop	r15
-    2630:	ef 90       	pop	r14
-    2632:	08 95       	ret
+0000242a <UserName_Set>:
+    242a:	ef 92       	push	r14
+    242c:	ff 92       	push	r15
+    242e:	1f 93       	push	r17
+    2430:	cf 93       	push	r28
+    2432:	df 93       	push	r29
+    2434:	83 e1       	ldi	r24, 0x13	; 19
+    2436:	90 e0       	ldi	r25, 0x00	; 0
+    2438:	60 e0       	ldi	r22, 0x00	; 0
+    243a:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    243e:	83 e1       	ldi	r24, 0x13	; 19
+    2440:	90 e0       	ldi	r25, 0x00	; 0
+    2442:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    2446:	80 93 7f 02 	sts	0x027F, r24
+    244a:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    244e:	81 e0       	ldi	r24, 0x01	; 1
+    2450:	65 e0       	ldi	r22, 0x05	; 5
+    2452:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2456:	82 e2       	ldi	r24, 0x22	; 34
+    2458:	91 e0       	ldi	r25, 0x01	; 1
+    245a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    245e:	82 e0       	ldi	r24, 0x02	; 2
+    2460:	61 e0       	ldi	r22, 0x01	; 1
+    2462:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2466:	80 ee       	ldi	r24, 0xE0	; 224
+    2468:	90 e0       	ldi	r25, 0x00	; 0
+    246a:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    246e:	84 e0       	ldi	r24, 0x04	; 4
+    2470:	6f e0       	ldi	r22, 0x0F	; 15
+    2472:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    2476:	84 e0       	ldi	r24, 0x04	; 4
+    2478:	60 e1       	ldi	r22, 0x10	; 16
+    247a:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    247e:	82 ef       	ldi	r24, 0xF2	; 242
+    2480:	90 e0       	ldi	r25, 0x00	; 0
+    2482:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2486:	83 e0       	ldi	r24, 0x03	; 3
+    2488:	61 e0       	ldi	r22, 0x01	; 1
+    248a:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    248e:	10 92 7f 02 	sts	0x027F, r1
+    2492:	80 91 7f 02 	lds	r24, 0x027F
+    2496:	88 23       	and	r24, r24
+    2498:	09 f4       	brne	.+2      	; 0x249c <UserName_Set+0x72>
+    249a:	50 c0       	rjmp	.+160    	; 0x253c <UserName_Set+0x112>
+    249c:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    24a0:	8f e2       	ldi	r24, 0x2F	; 47
+    24a2:	91 e0       	ldi	r25, 0x01	; 1
+    24a4:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    24a8:	82 e0       	ldi	r24, 0x02	; 2
+    24aa:	61 e0       	ldi	r22, 0x01	; 1
+    24ac:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    24b0:	89 e0       	ldi	r24, 0x09	; 9
+    24b2:	91 e0       	ldi	r25, 0x01	; 1
+    24b4:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    24b8:	84 e0       	ldi	r24, 0x04	; 4
+    24ba:	61 e0       	ldi	r22, 0x01	; 1
+    24bc:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    24c0:	84 e0       	ldi	r24, 0x04	; 4
+    24c2:	62 e0       	ldi	r22, 0x02	; 2
+    24c4:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    24c8:	8a e1       	ldi	r24, 0x1A	; 26
+    24ca:	91 e0       	ldi	r25, 0x01	; 1
+    24cc:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    24d0:	81 e8       	ldi	r24, 0x81	; 129
+    24d2:	92 e0       	ldi	r25, 0x02	; 2
+    24d4:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    24d8:	80 93 75 02 	sts	0x0275, r24
+    24dc:	80 91 75 02 	lds	r24, 0x0275
+    24e0:	88 23       	and	r24, r24
+    24e2:	b1 f7       	brne	.-20     	; 0x24d0 <UserName_Set+0xa6>
+    24e4:	80 91 81 02 	lds	r24, 0x0281
+    24e8:	8d 30       	cpi	r24, 0x0D	; 13
+    24ea:	21 f0       	breq	.+8      	; 0x24f4 <UserName_Set+0xca>
+    24ec:	80 91 81 02 	lds	r24, 0x0281
+    24f0:	8f 30       	cpi	r24, 0x0F	; 15
+    24f2:	71 f7       	brne	.-36     	; 0x24d0 <UserName_Set+0xa6>
+    24f4:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
+    24f8:	81 e0       	ldi	r24, 0x01	; 1
+    24fa:	65 e0       	ldi	r22, 0x05	; 5
+    24fc:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2500:	82 e2       	ldi	r24, 0x22	; 34
+    2502:	91 e0       	ldi	r25, 0x01	; 1
+    2504:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2508:	82 e0       	ldi	r24, 0x02	; 2
+    250a:	61 e0       	ldi	r22, 0x01	; 1
+    250c:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2510:	80 ee       	ldi	r24, 0xE0	; 224
+    2512:	90 e0       	ldi	r25, 0x00	; 0
+    2514:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2518:	84 e0       	ldi	r24, 0x04	; 4
+    251a:	6f e0       	ldi	r22, 0x0F	; 15
+    251c:	0e 94 f3 0d 	call	0x1be6	; 0x1be6 <CLCD_vSendExtraChar>
+    2520:	84 e0       	ldi	r24, 0x04	; 4
+    2522:	60 e1       	ldi	r22, 0x10	; 16
+    2524:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2528:	82 ef       	ldi	r24, 0xF2	; 242
+    252a:	90 e0       	ldi	r25, 0x00	; 0
+    252c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
+    2530:	83 e0       	ldi	r24, 0x03	; 3
+    2532:	61 e0       	ldi	r22, 0x01	; 1
+    2534:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
+    2538:	10 92 7f 02 	sts	0x027F, r1
+    253c:	8e e0       	ldi	r24, 0x0E	; 14
+    253e:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    2542:	81 e8       	ldi	r24, 0x81	; 129
+    2544:	92 e0       	ldi	r25, 0x02	; 2
+    2546:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
+    254a:	80 93 75 02 	sts	0x0275, r24
+    254e:	80 91 75 02 	lds	r24, 0x0275
+    2552:	88 23       	and	r24, r24
+    2554:	89 f4       	brne	.+34     	; 0x2578 <UserName_Set+0x14e>
+    2556:	80 91 7f 02 	lds	r24, 0x027F
+    255a:	88 23       	and	r24, r24
+    255c:	69 f4       	brne	.+26     	; 0x2578 <UserName_Set+0x14e>
+    255e:	80 91 81 02 	lds	r24, 0x0281
+    2562:	8d 30       	cpi	r24, 0x0D	; 13
+    2564:	71 f3       	breq	.-36     	; 0x2542 <UserName_Set+0x118>
+    2566:	80 91 81 02 	lds	r24, 0x0281
+    256a:	8f 30       	cpi	r24, 0x0F	; 15
+    256c:	51 f3       	breq	.-44     	; 0x2542 <UserName_Set+0x118>
+    256e:	80 91 81 02 	lds	r24, 0x0281
+    2572:	88 30       	cpi	r24, 0x08	; 8
+    2574:	31 f3       	breq	.-52     	; 0x2542 <UserName_Set+0x118>
+    2576:	14 c0       	rjmp	.+40     	; 0x25a0 <UserName_Set+0x176>
+    2578:	80 91 75 02 	lds	r24, 0x0275
+    257c:	88 23       	and	r24, r24
+    257e:	01 f5       	brne	.+64     	; 0x25c0 <UserName_Set+0x196>
+    2580:	80 91 7f 02 	lds	r24, 0x027F
+    2584:	84 31       	cpi	r24, 0x14	; 20
+    2586:	e0 f4       	brcc	.+56     	; 0x25c0 <UserName_Set+0x196>
+    2588:	80 91 81 02 	lds	r24, 0x0281
+    258c:	8d 30       	cpi	r24, 0x0D	; 13
+    258e:	51 f1       	breq	.+84     	; 0x25e4 <UserName_Set+0x1ba>
+    2590:	80 91 81 02 	lds	r24, 0x0281
+    2594:	8f 30       	cpi	r24, 0x0F	; 15
+    2596:	31 f1       	breq	.+76     	; 0x25e4 <UserName_Set+0x1ba>
+    2598:	80 91 81 02 	lds	r24, 0x0281
+    259c:	88 30       	cpi	r24, 0x08	; 8
+    259e:	81 f1       	breq	.+96     	; 0x2600 <UserName_Set+0x1d6>
+    25a0:	80 91 81 02 	lds	r24, 0x0281
+    25a4:	0e 94 d7 0d 	call	0x1bae	; 0x1bae <CLCD_vSendData>
+    25a8:	60 91 81 02 	lds	r22, 0x0281
+    25ac:	80 91 7f 02 	lds	r24, 0x027F
+    25b0:	90 e0       	ldi	r25, 0x00	; 0
+    25b2:	81 96       	adiw	r24, 0x21	; 33
+    25b4:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    25b8:	80 91 7f 02 	lds	r24, 0x027F
+    25bc:	8f 5f       	subi	r24, 0xFF	; 255
+    25be:	25 c0       	rjmp	.+74     	; 0x260a <UserName_Set+0x1e0>
+    25c0:	80 91 75 02 	lds	r24, 0x0275
+    25c4:	88 23       	and	r24, r24
+    25c6:	09 f0       	breq	.+2      	; 0x25ca <UserName_Set+0x1a0>
+    25c8:	bc cf       	rjmp	.-136    	; 0x2542 <UserName_Set+0x118>
+    25ca:	80 91 7f 02 	lds	r24, 0x027F
+    25ce:	84 31       	cpi	r24, 0x14	; 20
+    25d0:	08 f4       	brcc	.+2      	; 0x25d4 <UserName_Set+0x1aa>
+    25d2:	b7 cf       	rjmp	.-146    	; 0x2542 <UserName_Set+0x118>
+    25d4:	80 91 81 02 	lds	r24, 0x0281
+    25d8:	8d 30       	cpi	r24, 0x0D	; 13
+    25da:	21 f0       	breq	.+8      	; 0x25e4 <UserName_Set+0x1ba>
+    25dc:	80 91 81 02 	lds	r24, 0x0281
+    25e0:	8f 30       	cpi	r24, 0x0F	; 15
+    25e2:	49 f4       	brne	.+18     	; 0x25f6 <UserName_Set+0x1cc>
+    25e4:	8c e0       	ldi	r24, 0x0C	; 12
+    25e6:	0e 94 7f 0d 	call	0x1afe	; 0x1afe <CLCD_vSendCommand>
+    25ea:	80 91 7f 02 	lds	r24, 0x027F
+    25ee:	86 30       	cpi	r24, 0x06	; 6
+    25f0:	08 f4       	brcc	.+2      	; 0x25f4 <UserName_Set+0x1ca>
+    25f2:	4f cf       	rjmp	.-354    	; 0x2492 <UserName_Set+0x68>
+    25f4:	0d c0       	rjmp	.+26     	; 0x2610 <UserName_Set+0x1e6>
+    25f6:	80 91 81 02 	lds	r24, 0x0281
+    25fa:	88 30       	cpi	r24, 0x08	; 8
+    25fc:	09 f0       	breq	.+2      	; 0x2600 <UserName_Set+0x1d6>
+    25fe:	a1 cf       	rjmp	.-190    	; 0x2542 <UserName_Set+0x118>
+    2600:	0e 94 59 0f 	call	0x1eb2	; 0x1eb2 <Clear_Char>
+    2604:	80 91 7f 02 	lds	r24, 0x027F
+    2608:	81 50       	subi	r24, 0x01	; 1
+    260a:	80 93 7f 02 	sts	0x027F, r24
+    260e:	99 cf       	rjmp	.-206    	; 0x2542 <UserName_Set+0x118>
+    2610:	10 e0       	ldi	r17, 0x00	; 0
+    2612:	95 e1       	ldi	r25, 0x15	; 21
+    2614:	e9 2e       	mov	r14, r25
+    2616:	f1 2c       	mov	r15, r1
+    2618:	c0 e4       	ldi	r28, 0x40	; 64
+    261a:	d0 e0       	ldi	r29, 0x00	; 0
+    261c:	07 c0       	rjmp	.+14     	; 0x262c <UserName_Set+0x202>
+    261e:	ce 01       	movw	r24, r28
+    2620:	82 1b       	sub	r24, r18
+    2622:	93 0b       	sbc	r25, r19
+    2624:	6f ef       	ldi	r22, 0xFF	; 255
+    2626:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    262a:	1f 5f       	subi	r17, 0xFF	; 255
+    262c:	21 2f       	mov	r18, r17
+    262e:	30 e0       	ldi	r19, 0x00	; 0
+    2630:	80 91 7f 02 	lds	r24, 0x027F
+    2634:	a7 01       	movw	r20, r14
+    2636:	48 1b       	sub	r20, r24
+    2638:	51 09       	sbc	r21, r1
+    263a:	24 17       	cp	r18, r20
+    263c:	35 07       	cpc	r19, r21
+    263e:	7c f3       	brlt	.-34     	; 0x261e <UserName_Set+0x1f4>
+    2640:	80 e1       	ldi	r24, 0x10	; 16
+    2642:	90 e0       	ldi	r25, 0x00	; 0
+    2644:	60 e0       	ldi	r22, 0x00	; 0
+    2646:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    264a:	83 e1       	ldi	r24, 0x13	; 19
+    264c:	90 e0       	ldi	r25, 0x00	; 0
+    264e:	60 91 7f 02 	lds	r22, 0x027F
+    2652:	0e 94 50 0a 	call	0x14a0	; 0x14a0 <EEPROM_vWrite>
+    2656:	df 91       	pop	r29
+    2658:	cf 91       	pop	r28
+    265a:	1f 91       	pop	r17
+    265c:	ff 90       	pop	r15
+    265e:	ef 90       	pop	r14
+    2660:	08 95       	ret
 
-00002634 <main>:
-    2634:	cf 93       	push	r28
-    2636:	df 93       	push	r29
-    2638:	83 e1       	ldi	r24, 0x13	; 19
-    263a:	90 e0       	ldi	r25, 0x00	; 0
-    263c:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    2640:	80 93 7f 02 	sts	0x027F, r24
-    2644:	84 e1       	ldi	r24, 0x14	; 20
-    2646:	90 e0       	ldi	r25, 0x00	; 0
-    2648:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    264c:	80 93 80 02 	sts	0x0280, r24
-    2650:	82 e1       	ldi	r24, 0x12	; 18
-    2652:	90 e0       	ldi	r25, 0x00	; 0
-    2654:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    2658:	8f 3f       	cpi	r24, 0xFF	; 255
-    265a:	31 f0       	breq	.+12     	; 0x2668 <main+0x34>
-    265c:	82 e1       	ldi	r24, 0x12	; 18
-    265e:	90 e0       	ldi	r25, 0x00	; 0
-    2660:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
-    2664:	80 93 75 02 	sts	0x0275, r24
-    2668:	0e 94 e6 0e 	call	0x1dcc	; 0x1dcc <CLCD_vInit>
-    266c:	0e 94 e0 08 	call	0x11c0	; 0x11c0 <USART_vInit>
-    2670:	81 e0       	ldi	r24, 0x01	; 1
-    2672:	67 e0       	ldi	r22, 0x07	; 7
-    2674:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    2678:	88 e3       	ldi	r24, 0x38	; 56
-    267a:	91 e0       	ldi	r25, 0x01	; 1
-    267c:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2680:	88 e8       	ldi	r24, 0x88	; 136
-    2682:	93 e1       	ldi	r25, 0x13	; 19
-    2684:	28 ec       	ldi	r18, 0xC8	; 200
-    2686:	30 e0       	ldi	r19, 0x00	; 0
-    2688:	f9 01       	movw	r30, r18
-    268a:	31 97       	sbiw	r30, 0x01	; 1
-    268c:	f1 f7       	brne	.-4      	; 0x268a <main+0x56>
-    268e:	01 97       	sbiw	r24, 0x01	; 1
-    2690:	d9 f7       	brne	.-10     	; 0x2688 <main+0x54>
+00002662 <EEPROM_Check>:
+    2662:	83 e1       	ldi	r24, 0x13	; 19
+    2664:	90 e0       	ldi	r25, 0x00	; 0
+    2666:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    266a:	80 93 7f 02 	sts	0x027F, r24
+    266e:	84 e1       	ldi	r24, 0x14	; 20
+    2670:	90 e0       	ldi	r25, 0x00	; 0
+    2672:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    2676:	80 93 80 02 	sts	0x0280, r24
+    267a:	82 e1       	ldi	r24, 0x12	; 18
+    267c:	90 e0       	ldi	r25, 0x00	; 0
+    267e:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    2682:	8f 3f       	cpi	r24, 0xFF	; 255
+    2684:	31 f0       	breq	.+12     	; 0x2692 <EEPROM_Check+0x30>
+    2686:	82 e1       	ldi	r24, 0x12	; 18
+    2688:	90 e0       	ldi	r25, 0x00	; 0
+    268a:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
+    268e:	80 93 72 02 	sts	0x0272, r24
     2692:	80 e1       	ldi	r24, 0x10	; 16
     2694:	90 e0       	ldi	r25, 0x00	; 0
     2696:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
     269a:	8f 3f       	cpi	r24, 0xFF	; 255
-    269c:	41 f5       	brne	.+80     	; 0x26ee <main+0xba>
+    269c:	41 f5       	brne	.+80     	; 0x26ee <EEPROM_Check+0x8c>
     269e:	82 e0       	ldi	r24, 0x02	; 2
     26a0:	61 e0       	ldi	r22, 0x01	; 1
     26a2:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
@@ -4696,29 +4700,29 @@ Disassembly of section .text:
     26b6:	84 e0       	ldi	r24, 0x04	; 4
     26b8:	60 e1       	ldi	r22, 0x10	; 16
     26ba:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    26be:	8a ee       	ldi	r24, 0xEA	; 234
+    26be:	82 ef       	ldi	r24, 0xF2	; 242
     26c0:	90 e0       	ldi	r25, 0x00	; 0
     26c2:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    26c6:	86 e9       	ldi	r24, 0x96	; 150
+    26c6:	81 e8       	ldi	r24, 0x81	; 129
     26c8:	92 e0       	ldi	r25, 0x02	; 2
     26ca:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    26ce:	80 93 72 02 	sts	0x0272, r24
-    26d2:	80 91 72 02 	lds	r24, 0x0272
+    26ce:	80 93 75 02 	sts	0x0275, r24
+    26d2:	80 91 75 02 	lds	r24, 0x0275
     26d6:	88 23       	and	r24, r24
-    26d8:	b1 f7       	brne	.-20     	; 0x26c6 <main+0x92>
-    26da:	80 91 96 02 	lds	r24, 0x0296
+    26d8:	b1 f7       	brne	.-20     	; 0x26c6 <EEPROM_Check+0x64>
+    26da:	80 91 81 02 	lds	r24, 0x0281
     26de:	8d 30       	cpi	r24, 0x0D	; 13
-    26e0:	21 f0       	breq	.+8      	; 0x26ea <main+0xb6>
-    26e2:	80 91 96 02 	lds	r24, 0x0296
+    26e0:	21 f0       	breq	.+8      	; 0x26ea <EEPROM_Check+0x88>
+    26e2:	80 91 81 02 	lds	r24, 0x0281
     26e6:	8f 30       	cpi	r24, 0x0F	; 15
-    26e8:	71 f7       	brne	.-36     	; 0x26c6 <main+0x92>
-    26ea:	0e 94 fe 11 	call	0x23fc	; 0x23fc <UserName_Set>
+    26e8:	71 f7       	brne	.-36     	; 0x26c6 <EEPROM_Check+0x64>
+    26ea:	0e 94 15 12 	call	0x242a	; 0x242a <UserName_Set>
     26ee:	81 e1       	ldi	r24, 0x11	; 17
     26f0:	90 e0       	ldi	r25, 0x00	; 0
     26f2:	0e 94 58 0a 	call	0x14b0	; 0x14b0 <EEPROM_vRead>
     26f6:	8f 3f       	cpi	r24, 0xFF	; 255
-    26f8:	41 f5       	brne	.+80     	; 0x274a <main+0x116>
-    26fa:	0e 94 ec 10 	call	0x21d8	; 0x21d8 <PassWord_Set>
+    26f8:	41 f5       	brne	.+80     	; 0x274a <EEPROM_Check+0xe8>
+    26fa:	0e 94 03 11 	call	0x2206	; 0x2206 <PassWord_Set>
     26fe:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
     2702:	8f e4       	ldi	r24, 0x4F	; 79
     2704:	91 e0       	ldi	r25, 0x01	; 1
@@ -4729,208 +4733,198 @@ Disassembly of section .text:
     2712:	84 e0       	ldi	r24, 0x04	; 4
     2714:	60 e1       	ldi	r22, 0x10	; 16
     2716:	0e 94 ab 0d 	call	0x1b56	; 0x1b56 <CLCD_vSetPosition>
-    271a:	8a ee       	ldi	r24, 0xEA	; 234
+    271a:	82 ef       	ldi	r24, 0xF2	; 242
     271c:	90 e0       	ldi	r25, 0x00	; 0
     271e:	0e 94 d3 0e 	call	0x1da6	; 0x1da6 <CLCD_vSendString>
-    2722:	86 e9       	ldi	r24, 0x96	; 150
+    2722:	81 e8       	ldi	r24, 0x81	; 129
     2724:	92 e0       	ldi	r25, 0x02	; 2
     2726:	0e 94 14 09 	call	0x1228	; 0x1228 <USART_u8ReceiveData>
-    272a:	80 93 72 02 	sts	0x0272, r24
-    272e:	80 91 72 02 	lds	r24, 0x0272
+    272a:	80 93 75 02 	sts	0x0275, r24
+    272e:	80 91 75 02 	lds	r24, 0x0275
     2732:	88 23       	and	r24, r24
-    2734:	b1 f7       	brne	.-20     	; 0x2722 <main+0xee>
-    2736:	80 91 96 02 	lds	r24, 0x0296
+    2734:	b1 f7       	brne	.-20     	; 0x2722 <EEPROM_Check+0xc0>
+    2736:	80 91 81 02 	lds	r24, 0x0281
     273a:	8d 30       	cpi	r24, 0x0D	; 13
-    273c:	21 f0       	breq	.+8      	; 0x2746 <main+0x112>
-    273e:	80 91 96 02 	lds	r24, 0x0296
+    273c:	21 f0       	breq	.+8      	; 0x2746 <EEPROM_Check+0xe4>
+    273e:	80 91 81 02 	lds	r24, 0x0281
     2742:	8f 30       	cpi	r24, 0x0F	; 15
-    2744:	71 f7       	brne	.-36     	; 0x2722 <main+0xee>
+    2744:	71 f7       	brne	.-36     	; 0x2722 <EEPROM_Check+0xc0>
     2746:	0e 94 cf 0d 	call	0x1b9e	; 0x1b9e <CLCD_vClearScreen>
-    274a:	80 91 75 02 	lds	r24, 0x0275
+    274a:	80 91 72 02 	lds	r24, 0x0272
     274e:	88 23       	and	r24, r24
-    2750:	11 f4       	brne	.+4      	; 0x2756 <main+0x122>
-    2752:	0e 94 3e 0f 	call	0x1e7c	; 0x1e7c <Error_TimeOut>
-    2756:	c8 ec       	ldi	r28, 0xC8	; 200
-    2758:	d0 e0       	ldi	r29, 0x00	; 0
-    275a:	0e 94 8d 10 	call	0x211a	; 0x211a <Sign_In>
-    275e:	80 e1       	ldi	r24, 0x10	; 16
-    2760:	97 e2       	ldi	r25, 0x27	; 39
-    2762:	fe 01       	movw	r30, r28
-    2764:	31 97       	sbiw	r30, 0x01	; 1
-    2766:	f1 f7       	brne	.-4      	; 0x2764 <main+0x130>
-    2768:	01 97       	sbiw	r24, 0x01	; 1
-    276a:	d9 f7       	brne	.-10     	; 0x2762 <main+0x12e>
-    276c:	f6 cf       	rjmp	.-20     	; 0x275a <main+0x126>
+    2750:	11 f4       	brne	.+4      	; 0x2756 <EEPROM_Check+0xf4>
+    2752:	0e 94 63 0f 	call	0x1ec6	; 0x1ec6 <Error_TimeOut>
+    2756:	08 95       	ret
 
-0000276e <__mulsi3>:
-    276e:	62 9f       	mul	r22, r18
-    2770:	d0 01       	movw	r26, r0
-    2772:	73 9f       	mul	r23, r19
-    2774:	f0 01       	movw	r30, r0
-    2776:	82 9f       	mul	r24, r18
-    2778:	e0 0d       	add	r30, r0
-    277a:	f1 1d       	adc	r31, r1
-    277c:	64 9f       	mul	r22, r20
-    277e:	e0 0d       	add	r30, r0
-    2780:	f1 1d       	adc	r31, r1
-    2782:	92 9f       	mul	r25, r18
-    2784:	f0 0d       	add	r31, r0
-    2786:	83 9f       	mul	r24, r19
-    2788:	f0 0d       	add	r31, r0
-    278a:	74 9f       	mul	r23, r20
-    278c:	f0 0d       	add	r31, r0
-    278e:	65 9f       	mul	r22, r21
-    2790:	f0 0d       	add	r31, r0
-    2792:	99 27       	eor	r25, r25
-    2794:	72 9f       	mul	r23, r18
-    2796:	b0 0d       	add	r27, r0
-    2798:	e1 1d       	adc	r30, r1
-    279a:	f9 1f       	adc	r31, r25
-    279c:	63 9f       	mul	r22, r19
-    279e:	b0 0d       	add	r27, r0
-    27a0:	e1 1d       	adc	r30, r1
-    27a2:	f9 1f       	adc	r31, r25
-    27a4:	bd 01       	movw	r22, r26
-    27a6:	cf 01       	movw	r24, r30
-    27a8:	11 24       	eor	r1, r1
-    27aa:	08 95       	ret
+00002758 <__mulsi3>:
+    2758:	62 9f       	mul	r22, r18
+    275a:	d0 01       	movw	r26, r0
+    275c:	73 9f       	mul	r23, r19
+    275e:	f0 01       	movw	r30, r0
+    2760:	82 9f       	mul	r24, r18
+    2762:	e0 0d       	add	r30, r0
+    2764:	f1 1d       	adc	r31, r1
+    2766:	64 9f       	mul	r22, r20
+    2768:	e0 0d       	add	r30, r0
+    276a:	f1 1d       	adc	r31, r1
+    276c:	92 9f       	mul	r25, r18
+    276e:	f0 0d       	add	r31, r0
+    2770:	83 9f       	mul	r24, r19
+    2772:	f0 0d       	add	r31, r0
+    2774:	74 9f       	mul	r23, r20
+    2776:	f0 0d       	add	r31, r0
+    2778:	65 9f       	mul	r22, r21
+    277a:	f0 0d       	add	r31, r0
+    277c:	99 27       	eor	r25, r25
+    277e:	72 9f       	mul	r23, r18
+    2780:	b0 0d       	add	r27, r0
+    2782:	e1 1d       	adc	r30, r1
+    2784:	f9 1f       	adc	r31, r25
+    2786:	63 9f       	mul	r22, r19
+    2788:	b0 0d       	add	r27, r0
+    278a:	e1 1d       	adc	r30, r1
+    278c:	f9 1f       	adc	r31, r25
+    278e:	bd 01       	movw	r22, r26
+    2790:	cf 01       	movw	r24, r30
+    2792:	11 24       	eor	r1, r1
+    2794:	08 95       	ret
 
-000027ac <__udivmodsi4>:
-    27ac:	a1 e2       	ldi	r26, 0x21	; 33
-    27ae:	1a 2e       	mov	r1, r26
-    27b0:	aa 1b       	sub	r26, r26
-    27b2:	bb 1b       	sub	r27, r27
-    27b4:	fd 01       	movw	r30, r26
-    27b6:	0d c0       	rjmp	.+26     	; 0x27d2 <__udivmodsi4_ep>
+00002796 <__udivmodsi4>:
+    2796:	a1 e2       	ldi	r26, 0x21	; 33
+    2798:	1a 2e       	mov	r1, r26
+    279a:	aa 1b       	sub	r26, r26
+    279c:	bb 1b       	sub	r27, r27
+    279e:	fd 01       	movw	r30, r26
+    27a0:	0d c0       	rjmp	.+26     	; 0x27bc <__udivmodsi4_ep>
 
-000027b8 <__udivmodsi4_loop>:
-    27b8:	aa 1f       	adc	r26, r26
-    27ba:	bb 1f       	adc	r27, r27
-    27bc:	ee 1f       	adc	r30, r30
-    27be:	ff 1f       	adc	r31, r31
-    27c0:	a2 17       	cp	r26, r18
-    27c2:	b3 07       	cpc	r27, r19
-    27c4:	e4 07       	cpc	r30, r20
-    27c6:	f5 07       	cpc	r31, r21
-    27c8:	20 f0       	brcs	.+8      	; 0x27d2 <__udivmodsi4_ep>
-    27ca:	a2 1b       	sub	r26, r18
-    27cc:	b3 0b       	sbc	r27, r19
-    27ce:	e4 0b       	sbc	r30, r20
-    27d0:	f5 0b       	sbc	r31, r21
+000027a2 <__udivmodsi4_loop>:
+    27a2:	aa 1f       	adc	r26, r26
+    27a4:	bb 1f       	adc	r27, r27
+    27a6:	ee 1f       	adc	r30, r30
+    27a8:	ff 1f       	adc	r31, r31
+    27aa:	a2 17       	cp	r26, r18
+    27ac:	b3 07       	cpc	r27, r19
+    27ae:	e4 07       	cpc	r30, r20
+    27b0:	f5 07       	cpc	r31, r21
+    27b2:	20 f0       	brcs	.+8      	; 0x27bc <__udivmodsi4_ep>
+    27b4:	a2 1b       	sub	r26, r18
+    27b6:	b3 0b       	sbc	r27, r19
+    27b8:	e4 0b       	sbc	r30, r20
+    27ba:	f5 0b       	sbc	r31, r21
 
-000027d2 <__udivmodsi4_ep>:
-    27d2:	66 1f       	adc	r22, r22
-    27d4:	77 1f       	adc	r23, r23
-    27d6:	88 1f       	adc	r24, r24
-    27d8:	99 1f       	adc	r25, r25
-    27da:	1a 94       	dec	r1
-    27dc:	69 f7       	brne	.-38     	; 0x27b8 <__udivmodsi4_loop>
-    27de:	60 95       	com	r22
-    27e0:	70 95       	com	r23
-    27e2:	80 95       	com	r24
-    27e4:	90 95       	com	r25
-    27e6:	9b 01       	movw	r18, r22
-    27e8:	ac 01       	movw	r20, r24
-    27ea:	bd 01       	movw	r22, r26
-    27ec:	cf 01       	movw	r24, r30
-    27ee:	08 95       	ret
+000027bc <__udivmodsi4_ep>:
+    27bc:	66 1f       	adc	r22, r22
+    27be:	77 1f       	adc	r23, r23
+    27c0:	88 1f       	adc	r24, r24
+    27c2:	99 1f       	adc	r25, r25
+    27c4:	1a 94       	dec	r1
+    27c6:	69 f7       	brne	.-38     	; 0x27a2 <__udivmodsi4_loop>
+    27c8:	60 95       	com	r22
+    27ca:	70 95       	com	r23
+    27cc:	80 95       	com	r24
+    27ce:	90 95       	com	r25
+    27d0:	9b 01       	movw	r18, r22
+    27d2:	ac 01       	movw	r20, r24
+    27d4:	bd 01       	movw	r22, r26
+    27d6:	cf 01       	movw	r24, r30
+    27d8:	08 95       	ret
 
-000027f0 <__divmodsi4>:
-    27f0:	97 fb       	bst	r25, 7
-    27f2:	09 2e       	mov	r0, r25
-    27f4:	05 26       	eor	r0, r21
-    27f6:	0e d0       	rcall	.+28     	; 0x2814 <__divmodsi4_neg1>
-    27f8:	57 fd       	sbrc	r21, 7
-    27fa:	04 d0       	rcall	.+8      	; 0x2804 <__divmodsi4_neg2>
-    27fc:	d7 df       	rcall	.-82     	; 0x27ac <__udivmodsi4>
-    27fe:	0a d0       	rcall	.+20     	; 0x2814 <__divmodsi4_neg1>
-    2800:	00 1c       	adc	r0, r0
-    2802:	38 f4       	brcc	.+14     	; 0x2812 <__divmodsi4_exit>
+000027da <__divmodsi4>:
+    27da:	97 fb       	bst	r25, 7
+    27dc:	09 2e       	mov	r0, r25
+    27de:	05 26       	eor	r0, r21
+    27e0:	0e d0       	rcall	.+28     	; 0x27fe <__divmodsi4_neg1>
+    27e2:	57 fd       	sbrc	r21, 7
+    27e4:	04 d0       	rcall	.+8      	; 0x27ee <__divmodsi4_neg2>
+    27e6:	d7 df       	rcall	.-82     	; 0x2796 <__udivmodsi4>
+    27e8:	0a d0       	rcall	.+20     	; 0x27fe <__divmodsi4_neg1>
+    27ea:	00 1c       	adc	r0, r0
+    27ec:	38 f4       	brcc	.+14     	; 0x27fc <__divmodsi4_exit>
 
-00002804 <__divmodsi4_neg2>:
-    2804:	50 95       	com	r21
-    2806:	40 95       	com	r20
-    2808:	30 95       	com	r19
-    280a:	21 95       	neg	r18
-    280c:	3f 4f       	sbci	r19, 0xFF	; 255
-    280e:	4f 4f       	sbci	r20, 0xFF	; 255
-    2810:	5f 4f       	sbci	r21, 0xFF	; 255
+000027ee <__divmodsi4_neg2>:
+    27ee:	50 95       	com	r21
+    27f0:	40 95       	com	r20
+    27f2:	30 95       	com	r19
+    27f4:	21 95       	neg	r18
+    27f6:	3f 4f       	sbci	r19, 0xFF	; 255
+    27f8:	4f 4f       	sbci	r20, 0xFF	; 255
+    27fa:	5f 4f       	sbci	r21, 0xFF	; 255
 
-00002812 <__divmodsi4_exit>:
-    2812:	08 95       	ret
+000027fc <__divmodsi4_exit>:
+    27fc:	08 95       	ret
 
-00002814 <__divmodsi4_neg1>:
-    2814:	f6 f7       	brtc	.-4      	; 0x2812 <__divmodsi4_exit>
-    2816:	90 95       	com	r25
-    2818:	80 95       	com	r24
-    281a:	70 95       	com	r23
-    281c:	61 95       	neg	r22
-    281e:	7f 4f       	sbci	r23, 0xFF	; 255
-    2820:	8f 4f       	sbci	r24, 0xFF	; 255
-    2822:	9f 4f       	sbci	r25, 0xFF	; 255
-    2824:	08 95       	ret
+000027fe <__divmodsi4_neg1>:
+    27fe:	f6 f7       	brtc	.-4      	; 0x27fc <__divmodsi4_exit>
+    2800:	90 95       	com	r25
+    2802:	80 95       	com	r24
+    2804:	70 95       	com	r23
+    2806:	61 95       	neg	r22
+    2808:	7f 4f       	sbci	r23, 0xFF	; 255
+    280a:	8f 4f       	sbci	r24, 0xFF	; 255
+    280c:	9f 4f       	sbci	r25, 0xFF	; 255
+    280e:	08 95       	ret
 
-00002826 <__prologue_saves__>:
-    2826:	2f 92       	push	r2
-    2828:	3f 92       	push	r3
-    282a:	4f 92       	push	r4
-    282c:	5f 92       	push	r5
-    282e:	6f 92       	push	r6
-    2830:	7f 92       	push	r7
-    2832:	8f 92       	push	r8
-    2834:	9f 92       	push	r9
-    2836:	af 92       	push	r10
-    2838:	bf 92       	push	r11
-    283a:	cf 92       	push	r12
-    283c:	df 92       	push	r13
-    283e:	ef 92       	push	r14
-    2840:	ff 92       	push	r15
-    2842:	0f 93       	push	r16
-    2844:	1f 93       	push	r17
-    2846:	cf 93       	push	r28
-    2848:	df 93       	push	r29
-    284a:	cd b7       	in	r28, 0x3d	; 61
-    284c:	de b7       	in	r29, 0x3e	; 62
-    284e:	ca 1b       	sub	r28, r26
-    2850:	db 0b       	sbc	r29, r27
-    2852:	0f b6       	in	r0, 0x3f	; 63
-    2854:	f8 94       	cli
-    2856:	de bf       	out	0x3e, r29	; 62
-    2858:	0f be       	out	0x3f, r0	; 63
-    285a:	cd bf       	out	0x3d, r28	; 61
-    285c:	09 94       	ijmp
+00002810 <__prologue_saves__>:
+    2810:	2f 92       	push	r2
+    2812:	3f 92       	push	r3
+    2814:	4f 92       	push	r4
+    2816:	5f 92       	push	r5
+    2818:	6f 92       	push	r6
+    281a:	7f 92       	push	r7
+    281c:	8f 92       	push	r8
+    281e:	9f 92       	push	r9
+    2820:	af 92       	push	r10
+    2822:	bf 92       	push	r11
+    2824:	cf 92       	push	r12
+    2826:	df 92       	push	r13
+    2828:	ef 92       	push	r14
+    282a:	ff 92       	push	r15
+    282c:	0f 93       	push	r16
+    282e:	1f 93       	push	r17
+    2830:	cf 93       	push	r28
+    2832:	df 93       	push	r29
+    2834:	cd b7       	in	r28, 0x3d	; 61
+    2836:	de b7       	in	r29, 0x3e	; 62
+    2838:	ca 1b       	sub	r28, r26
+    283a:	db 0b       	sbc	r29, r27
+    283c:	0f b6       	in	r0, 0x3f	; 63
+    283e:	f8 94       	cli
+    2840:	de bf       	out	0x3e, r29	; 62
+    2842:	0f be       	out	0x3f, r0	; 63
+    2844:	cd bf       	out	0x3d, r28	; 61
+    2846:	09 94       	ijmp
 
-0000285e <__epilogue_restores__>:
-    285e:	2a 88       	ldd	r2, Y+18	; 0x12
-    2860:	39 88       	ldd	r3, Y+17	; 0x11
-    2862:	48 88       	ldd	r4, Y+16	; 0x10
-    2864:	5f 84       	ldd	r5, Y+15	; 0x0f
-    2866:	6e 84       	ldd	r6, Y+14	; 0x0e
-    2868:	7d 84       	ldd	r7, Y+13	; 0x0d
-    286a:	8c 84       	ldd	r8, Y+12	; 0x0c
-    286c:	9b 84       	ldd	r9, Y+11	; 0x0b
-    286e:	aa 84       	ldd	r10, Y+10	; 0x0a
-    2870:	b9 84       	ldd	r11, Y+9	; 0x09
-    2872:	c8 84       	ldd	r12, Y+8	; 0x08
-    2874:	df 80       	ldd	r13, Y+7	; 0x07
-    2876:	ee 80       	ldd	r14, Y+6	; 0x06
-    2878:	fd 80       	ldd	r15, Y+5	; 0x05
-    287a:	0c 81       	ldd	r16, Y+4	; 0x04
-    287c:	1b 81       	ldd	r17, Y+3	; 0x03
-    287e:	aa 81       	ldd	r26, Y+2	; 0x02
-    2880:	b9 81       	ldd	r27, Y+1	; 0x01
-    2882:	ce 0f       	add	r28, r30
-    2884:	d1 1d       	adc	r29, r1
-    2886:	0f b6       	in	r0, 0x3f	; 63
-    2888:	f8 94       	cli
-    288a:	de bf       	out	0x3e, r29	; 62
-    288c:	0f be       	out	0x3f, r0	; 63
-    288e:	cd bf       	out	0x3d, r28	; 61
-    2890:	ed 01       	movw	r28, r26
-    2892:	08 95       	ret
+00002848 <__epilogue_restores__>:
+    2848:	2a 88       	ldd	r2, Y+18	; 0x12
+    284a:	39 88       	ldd	r3, Y+17	; 0x11
+    284c:	48 88       	ldd	r4, Y+16	; 0x10
+    284e:	5f 84       	ldd	r5, Y+15	; 0x0f
+    2850:	6e 84       	ldd	r6, Y+14	; 0x0e
+    2852:	7d 84       	ldd	r7, Y+13	; 0x0d
+    2854:	8c 84       	ldd	r8, Y+12	; 0x0c
+    2856:	9b 84       	ldd	r9, Y+11	; 0x0b
+    2858:	aa 84       	ldd	r10, Y+10	; 0x0a
+    285a:	b9 84       	ldd	r11, Y+9	; 0x09
+    285c:	c8 84       	ldd	r12, Y+8	; 0x08
+    285e:	df 80       	ldd	r13, Y+7	; 0x07
+    2860:	ee 80       	ldd	r14, Y+6	; 0x06
+    2862:	fd 80       	ldd	r15, Y+5	; 0x05
+    2864:	0c 81       	ldd	r16, Y+4	; 0x04
+    2866:	1b 81       	ldd	r17, Y+3	; 0x03
+    2868:	aa 81       	ldd	r26, Y+2	; 0x02
+    286a:	b9 81       	ldd	r27, Y+1	; 0x01
+    286c:	ce 0f       	add	r28, r30
+    286e:	d1 1d       	adc	r29, r1
+    2870:	0f b6       	in	r0, 0x3f	; 63
+    2872:	f8 94       	cli
+    2874:	de bf       	out	0x3e, r29	; 62
+    2876:	0f be       	out	0x3f, r0	; 63
+    2878:	cd bf       	out	0x3d, r28	; 61
+    287a:	ed 01       	movw	r28, r26
+    287c:	08 95       	ret
 
-00002894 <_exit>:
-    2894:	f8 94       	cli
+0000287e <_exit>:
+    287e:	f8 94       	cli
 
-00002896 <__stop_program>:
-    2896:	ff cf       	rjmp	.-2      	; 0x2896 <__stop_program>
+00002880 <__stop_program>:
+    2880:	ff cf       	rjmp	.-2      	; 0x2880 <__stop_program>

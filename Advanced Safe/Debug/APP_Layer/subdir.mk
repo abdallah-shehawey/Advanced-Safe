@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../APP_Layer/Advanced_Safe.c 
+../APP_Layer/Security.c \
+../APP_Layer/Smart_Home.c 
 
 OBJS += \
-./APP_Layer/Advanced_Safe.o 
+./APP_Layer/Security.o \
+./APP_Layer/Smart_Home.o 
 
 C_DEPS += \
-./APP_Layer/Advanced_Safe.d 
+./APP_Layer/Security.d \
+./APP_Layer/Smart_Home.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
