@@ -2,7 +2,7 @@
  * Security.h
  *
  *  Created on: Aug 31, 2024
- *      Author: Mega
+ *      Author: Abdallah Abdelmoemen Shehawey
  */
 
 #ifndef APP_LAYER_SECURITY_H_

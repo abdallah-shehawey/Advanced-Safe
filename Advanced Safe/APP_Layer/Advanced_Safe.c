@@ -1,8 +1,8 @@
 /*
- * Smart_Home.c
+ * Advanced Safe.c
  *
  *  Created on: Aug 29, 2024
- *      Author: Mega
+ *      Author: Abdallah Abdelmoemen Shehawey
  */
 
 #define F_CPU 8000000UL
