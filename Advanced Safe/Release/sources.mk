@@ -22,7 +22,9 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 APP_Layer \
+APP_Layer/SECURITY \
 HAL_Layer/CLCD \
+HAL_Layer/KPD \
 MCAL_Layer/DIO \
 MCAL_Layer/EEPROM \
 MCAL_Layer/USART \

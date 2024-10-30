@@ -11,7 +11,9 @@ RM := rm -rf
 -include MCAL_Layer/USART/subdir.mk
 -include MCAL_Layer/EEPROM/subdir.mk
 -include MCAL_Layer/DIO/subdir.mk
+-include HAL_Layer/KPD/subdir.mk
 -include HAL_Layer/CLCD/subdir.mk
+-include APP_Layer/SECURITY/subdir.mk
 -include APP_Layer/subdir.mk
 -include subdir.mk
 -include objects.mk

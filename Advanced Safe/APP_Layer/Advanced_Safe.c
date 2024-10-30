@@ -14,10 +14,11 @@
 #include "../MCAL_Layer/DIO/DIO_interface.h"
 #include "../MCAL_Layer/EEPROM/EEPROM_interface.h"
 #include "../MCAL_Layer/USART/USART_interface.h"
+#include "../HAL_Layer/KPD/KPD_interface.h"
 
 #include "../HAL_Layer/CLCD/CLCD_interface.h"
 
-#include "Security.h"
+#include "SECURITY/SECURITY_interface.h"
 
 volatile u8 Error_State, KPD_Press                  ;
 
@@ -28,15 +29,15 @@ void main(void)
 	/* Initialize USART to communicate with laptop */
 	USART_vInit();
 
-	CLCD_vSetPosition(1, 7);
-	CLCD_vSendString("Welcome");
+	KPD_vInit();
+
 	_delay_ms(500);
 	/*
 	First check if it first sign in or not
 	check if there is time out or not
 	check how many tries left
 	 */
-	EEPROM_Check();
+	EEPROM_vInit();
 	while (1)
 	{
 		Sign_In();
