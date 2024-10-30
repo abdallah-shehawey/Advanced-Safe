@@ -11,6 +11,13 @@
 #include "../STD_TYPES.h"
 #include "../STD_MACROS.h"
 
+#include "SECURITY_config.h"
+#include "SECURITY_interface.h"
+
+
+#include "../../MCAL_Layer/DIO/DIO_interface.h"
+#include "../../MCAL_Layer/EEPROM/EEPROM_interface.h"
+
 #if OUTPUT_SCREEN == CLCD_OUTPUT
 #if INPUT_DATA == KPD_INPUT
 #include "../../HAL_Layer/KPD/KPD_interface.h"
@@ -27,12 +34,6 @@
 #include "../../MCAL_Layer/USART/USART_interface.h"
 #endif
 #endif
-
-#include "../../MCAL_Layer/DIO/DIO_interface.h"
-#include "../../MCAL_Layer/EEPROM/EEPROM_interface.h"
-
-#include "SECURITY_config.h"
-#include "SECURITY_interface.h"
 
 /*To get Username And Password Length from number of input */
 volatile u8 UserName_Length = 0, PassWord_Length = 0;
