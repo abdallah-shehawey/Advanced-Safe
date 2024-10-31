@@ -14,13 +14,16 @@
 #include "../MCAL_Layer/DIO/DIO_interface.h"
 #include "../MCAL_Layer/EEPROM/EEPROM_interface.h"
 #include "../MCAL_Layer/USART/USART_interface.h"
-#include "../HAL_Layer/KPD/KPD_interface.h"
 
+
+#include "../HAL_Layer/KPD/KPD_interface.h"
 #include "../HAL_Layer/CLCD/CLCD_interface.h"
 
 #include "SECURITY/SECURITY_interface.h"
 
-volatile u8 Error_State, KPD_Press                  ;
+volatile u8 Error_State, KPD_Press;
+extern u8 UserName[20];
+extern u8 UserName_Length;
 
 void main(void)
 {
@@ -41,7 +44,17 @@ void main(void)
 	while (1)
 	{
 		Sign_In();
+		CLCD_vClearScreen();
+		// print hello message
+		CLCD_vSetPosition(2, 7);
+		CLCD_vSendString("Welcome ");
+		CLCD_vSetPosition(3, ((20 - UserName_Length) / 2) + 1);
+		CLCD_vSendString(UserName);
 		_delay_ms(1000);
+		EEPROM_vWrite(EEPROM_PassWordStatus, 0XFF);
+		PassWord_Set();
+		EEPROM_vWrite(EEPROM_UserNameStatus, 0XFF);
+		UserName_Set();
 	}
 }
 

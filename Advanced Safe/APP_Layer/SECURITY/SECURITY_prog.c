@@ -23,7 +23,7 @@
 #include "../../HAL_Layer/KPD/KPD_interface.h"
 #include "../../HAL_Layer/CLCD/CLCD_interface.h"
 #elif INPUT_DATA == TERMINAL_INPUT
-#incldue "../../MCAL_Layer/USART/USART_interface.h"
+#include "../../MCAL_Layer/USART/USART_interface.h"
 #include "../../HAL_Layer/CLCD/CLCD_interface.h"
 #endif
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
@@ -360,6 +360,10 @@ void UserName_Set(void)
 	// To write User Name length in EEPROM to dont lose it in the future and i want it in checking
 	EEPROM_FunWriteName(EEPROM_UserNameStatus, 0x00);
 	EEPROM_FunWriteName(EEPROM_USNL_Location, UserName_Length);
+	for (u8 i = 0; i < UserName_Length; i++)
+	{
+		UserName[i] = EEPROM_FunReadName(EEPROM_UserNameStartLocation + i);
+	}
 }
 
 //======================================================================================================================================//
