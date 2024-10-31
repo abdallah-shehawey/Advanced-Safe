@@ -15,7 +15,6 @@
 #include "../MCAL_Layer/EEPROM/EEPROM_interface.h"
 #include "../MCAL_Layer/USART/USART_interface.h"
 
-
 #include "../HAL_Layer/KPD/KPD_interface.h"
 #include "../HAL_Layer/CLCD/CLCD_interface.h"
 
@@ -31,9 +30,8 @@ void main(void)
 	CLCD_vInit();
 	/* Initialize USART to communicate with laptop */
 	USART_vInit();
-
+	/* Initialize KPD to get Data from GitHub */
 	KPD_vInit();
-
 	_delay_ms(500);
 	/*
 	First check if it first sign in or not
@@ -47,13 +45,13 @@ void main(void)
 		CLCD_vClearScreen();
 		// print hello message
 		CLCD_vSetPosition(2, 7);
-		CLCD_vSendString("Welcome ");
+		CLCD_vSendString("Welcome");
 		CLCD_vSetPosition(3, ((20 - UserName_Length) / 2) + 1);
 		CLCD_vSendString(UserName);
 		_delay_ms(1000);
-		EEPROM_vWrite(EEPROM_PassWordStatus, 0XFF);
+		//EEPROM_vWrite(EEPROM_PassWordStatus, 0XFF);
 		PassWord_Set();
-		EEPROM_vWrite(EEPROM_UserNameStatus, 0XFF);
+		//EEPROM_vWrite(EEPROM_UserNameStatus, 0XFF);
 		UserName_Set();
 	}
 }
