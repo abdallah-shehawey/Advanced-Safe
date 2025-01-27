@@ -38,4 +38,18 @@
 #define USART_SendStringFuncName USART_u8SendStringSynch
 #define USART_SendDataFuncName USART_u8SendData
 
+/* EEPROM Memory Layout */
+#define EEPROM_USER_START 0x20
+#define USER_BLOCK_SIZE 0x2A
+
+/* User Data Block Offsets */
+#define USER_NAME_LENGTH_OFFSET 0x00
+#define USER_NAME_START_OFFSET 0x01
+#define USER_PASS_LENGTH_OFFSET 0x15
+#define USER_PASS_START_OFFSET 0x16
+
+/* System Constants */
+#define NOTPRESSED 0xFF
+#define MAX_USERS 23
+
 #endif /* SECURITY_CONFIG_H_ */

@@ -1015,7 +1015,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 
 .debug_macinfo
  *(.debug_macinfo)
-OUTPUT(Advanced_Safe.elf elf32-avr)
+OUTPUT(Bank_DataBase.elf elf32-avr)
 LOAD linker stubs
 
 .debug_ranges   0x00000000       0x50

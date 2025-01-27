@@ -41,20 +41,20 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Advanced_Safe
+BUILD_ARTIFACT_NAME := Bank_DataBase
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-Advanced_Safe.lss \
+Bank_DataBase.lss \
 
 FLASH_IMAGE += \
-Advanced_Safe.hex \
+Bank_DataBase.hex \
 
 EEPROM_IMAGE += \
-Advanced_Safe.eep \
+Bank_DataBase.eep \
 
 SIZEDUMMY += \
 sizedummy \
@@ -64,43 +64,43 @@ sizedummy \
 all: main-build
 
 # Main-build Target
-main-build: Advanced_Safe.elf secondary-outputs
+main-build: Bank_DataBase.elf secondary-outputs
 
 # Tool invocations
-Advanced_Safe.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_DataBase.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Advanced_Safe.map -mmcu=atmega32 -o "Advanced_Safe.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Bank_DataBase.map -mmcu=atmega32 -o "Bank_DataBase.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Advanced_Safe.lss: Advanced_Safe.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_DataBase.lss: Bank_DataBase.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S Advanced_Safe.elf  >"Advanced_Safe.lss"
+	-avr-objdump -h -S Bank_DataBase.elf  >"Bank_DataBase.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Advanced_Safe.hex: Advanced_Safe.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_DataBase.hex: Bank_DataBase.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Advanced_Safe.elf  "Advanced_Safe.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Bank_DataBase.elf  "Bank_DataBase.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Advanced_Safe.eep: Advanced_Safe.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_DataBase.eep: Bank_DataBase.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Advanced_Safe.elf  "Advanced_Safe.eep"
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Bank_DataBase.elf  "Bank_DataBase.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Advanced_Safe.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: Bank_DataBase.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 Advanced_Safe.elf
+	-avr-size --format=avr --mcu=atmega32 Bank_DataBase.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Advanced_Safe.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Bank_DataBase.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
