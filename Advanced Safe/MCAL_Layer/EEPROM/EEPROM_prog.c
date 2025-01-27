@@ -7,13 +7,12 @@
  *
  */
 
-#include "../../APP_Layer/STD_MACROS.h"
 #include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
 #include "EEPROM_interface.h"
-#include "EEPROM_config.h"
 #include "EEPROM_private.h"
-
+#include "EEPROM_config.h"
 
 /*___________________________________________________________________________________________________________________*/
 

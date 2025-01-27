@@ -6,30 +6,16 @@
  *
  */
 
-#ifndef APP_LAYER_CONFIG_H_
-#define APP_LAYER_CONFIG_H_
+#ifndef SECURITY_CONFIG_H_
+#define SECURITY_CONFIG_H_
 
+/* Minimum lengths - moved from interface.h */
+#define USERNAME_MIN_LENGTH 5
+#define PASSWORD_MIN_LENGTH 8
 
-#define Tries_Max                          3
-#define USERNAME_MIN_LENGTH 6
-#define PASSWORD_MIN_LENGTH 5
-
+#define Tries_Max 3
 #define USERNAME_MAX_LENGTH 20
 #define PASSWORD_MAX_LENGTH 20
-
-/*
-*Optoins :-
-  1- CLCD_OUTPUT
-  2- TERMINAL_OUTPUT
-*/
-#define OUTPUT_SCREEN CLCD_OUTPUT
-
-/*
-*Optoins :-
-  1- KPD_INPUT
-  2- TERMINAL_INPUT
-*/
-#define INPUT_DATA    TERMINAL_INPUT
 
 /* EEPROM Functions Name */
 #define EEPROM_FunReadName EEPROM_vRead
@@ -52,4 +38,4 @@
 #define USART_SendStringFuncName USART_u8SendStringSynch
 #define USART_SendDataFuncName USART_u8SendData
 
-#endif /* APP_LAYER_CONFIG_H_ */
+#endif /* SECURITY_CONFIG_H_ */
