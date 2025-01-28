@@ -1,5 +1,5 @@
-APP_Layer/Barking_Sys.o APP_Layer/Barking_Sys.o:  \
- ../APP_Layer/Barking_Sys.c ../APP_Layer/STD_TYPES.h \
+APP_Layer/Bank_System.o APP_Layer/Bank_System.o:  \
+ ../APP_Layer/Bank_System.c ../APP_Layer/STD_TYPES.h \
   ../APP_Layer/STD_MACROS.h \
   ../APP_Layer/../MCAL_Layer/DIO/DIO_interface.h \
   ../APP_Layer/../MCAL_Layer/EEPROM/EEPROM_interface.h \

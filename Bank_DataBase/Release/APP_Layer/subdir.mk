@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../APP_Layer/Barking_Sys.c 
+../APP_Layer/Bank_System.c 
 
 OBJS += \
-./APP_Layer/Barking_Sys.o 
+./APP_Layer/Bank_System.o 
 
 C_DEPS += \
-./APP_Layer/Barking_Sys.d 
+./APP_Layer/Bank_System.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

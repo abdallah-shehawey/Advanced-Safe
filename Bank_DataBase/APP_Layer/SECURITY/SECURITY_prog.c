@@ -1,8 +1,10 @@
 /*
  * SECURITY_program.c
  *
- *  Author : Abdallah Abdelmoemen Shehawey
- *  Layer  : APP_Layer
+ * Author : Abdallah Abdelmoemen Shehawey
+ * Layer  : APP_Layer
+ * Description: Implements security features including user authentication,
+ *             password management, and access control for the system
  */
 
 #include <util/delay.h>
@@ -18,25 +20,40 @@
 #include "../../MCAL_Layer/USART/USART_interface.h"
 #include "../../HAL_Layer/CLCD/CLCD_interface.h"
 
-/* Global variables */
-volatile u8 Error_State, KPD_Press;
-volatile u8 UserName[20];
-volatile u8 UserName_Length = 0, PassWord_Length = 0;
-volatile u8 Tries = Tries_Max;
-volatile u8 Check[21];
-volatile u8 UserName_Check_Flag = 1, PassWord_Check_Flag = 1;
-volatile u8 Current_User = 0;
-volatile u8 User_Count = 0;
-volatile u8 Is_Admin = 0;
+/* Global Variables - System State */
+volatile u8 Error_State;             // Current operation error state
+volatile u8 KPD_Press;               // Last keypad press value
+volatile u8 UserName[20];            // Current username buffer
+volatile u8 UserName_Length = 0;     // Length of current username
+volatile u8 PassWord_Length = 0;     // Length of current password
+volatile u8 Tries = Tries_Max;       // Remaining login attempts
+volatile u8 Check[21];               // Buffer for verification operations
+volatile u8 UserName_Check_Flag = 1; // Username verification flag
+volatile u8 PassWord_Check_Flag = 1; // Password verification flag
+volatile u8 Current_User = 0;        // Index of currently active user
+volatile u8 User_Count = 0;          // Total number of registered users
+volatile u8 Is_Admin = 0;            // Admin privilege flag
 
 //=====================================================================================//
 
-/* Helper functions for EEPROM access */
+/* EEPROM Access Helper Functions */
+
+/**
+ * @brief Calculates the base EEPROM address for a user's data block
+ * @param user_index Index of the user (0 to MAX_USERS-1)
+ * @return Base address for the user's data in EEPROM
+ */
 static u16 Get_User_Base_Address(u8 user_index)
 {
   return EEPROM_USER_START + (user_index * USER_BLOCK_SIZE);
 }
-//=====================================================================================//
+
+/**
+ * @brief Reads a username from EEPROM
+ * @param user_index Index of the user to read
+ * @param username Buffer to store the username
+ * @param length Pointer to store username length
+ */
 static void Read_Username(u8 user_index, volatile u8 *username, volatile u8 *length)
 {
   u16 base_addr = Get_User_Base_Address(user_index);
@@ -48,8 +65,12 @@ static void Read_Username(u8 user_index, volatile u8 *username, volatile u8 *len
   username[*length] = '\0';
 }
 
-//=====================================================================================//
-
+/**
+ * @brief Writes a username to EEPROM
+ * @param user_index Index of the user to write
+ * @param username Username to store
+ * @param length Length of the username
+ */
 static void Write_Username(u8 user_index, u8 *username, u8 length)
 {
   u16 base_addr = Get_User_Base_Address(user_index);
@@ -60,8 +81,12 @@ static void Write_Username(u8 user_index, u8 *username, u8 length)
   }
 }
 
-//=====================================================================================//
-
+/**
+ * @brief Reads a password from EEPROM
+ * @param user_index Index of the user
+ * @param password Buffer to store the password
+ * @param length Pointer to store password length
+ */
 static void Read_Password(u8 user_index, u8 *password, u8 *length)
 {
   u16 base_addr = Get_User_Base_Address(user_index);
@@ -73,8 +98,12 @@ static void Read_Password(u8 user_index, u8 *password, u8 *length)
   password[*length] = '\0';
 }
 
-//=====================================================================================//
-
+/**
+ * @brief Writes a password to EEPROM
+ * @param user_index Index of the user
+ * @param password Password to store
+ * @param length Length of the password
+ */
 static void Write_Password(u8 user_index, u8 *password, u8 length)
 {
   u16 base_addr = Get_User_Base_Address(user_index);
@@ -85,9 +114,18 @@ static void Write_Password(u8 user_index, u8 *password, u8 length)
   }
 }
 
-//=====================================================================================//
-
-/* Password validation */
+/**
+ * @brief Validates password complexity requirements
+ * @param password Password to validate
+ * @param length Length of the password
+ * @return true if password meets all requirements, false otherwise
+ * @details Checks for:
+ *         - Minimum length
+ *         - Uppercase letters (if required)
+ *         - Lowercase letters (if required)
+ *         - Numbers (if required)
+ *         - Special characters (if required)
+ */
 bool Is_Password_Valid(u8 *password, u8 length)
 {
   if (length < PASSWORD_MIN_LENGTH)
@@ -119,9 +157,12 @@ bool Is_Password_Valid(u8 *password, u8 length)
   return true;
 }
 
-//=====================================================================================//
-
-/* Username validation */
+/**
+ * @brief Checks if a username already exists in the system
+ * @param username Username to check
+ * @param length Length of the username
+ * @return true if username exists, false otherwise
+ */
 bool Is_Username_Exists(u8 *username, u8 length)
 {
   u8 stored_username[21];
@@ -145,14 +186,15 @@ bool Is_Username_Exists(u8 *username, u8 length)
     }
     if (match)
       return true;
-
   }
   return false;
 }
 
-//=====================================================================================//
-
-/* Event logging */
+/**
+ * @brief Logs system events and displays them on LCD
+ * @param event_type Type of event (login, password change, etc.)
+ * @param user_index Index of user involved in the event
+ */
 void Log_Event(u8 event_type, u8 user_index)
 {
   CLCD_vClearScreen();
@@ -183,6 +225,11 @@ void Log_Event(u8 event_type, u8 user_index)
 //=====================================================================================//
 
 /* User management functions */
+/**
+ * @brief Changes username for current user
+ * @details Prompts for new username, validates it's not taken,
+ *          and updates EEPROM storage
+ */
 void Change_Username(void)
 {
   CLCD_vClearScreen();
@@ -232,7 +279,7 @@ void Change_Username(void)
       CLCD_vSendString((u8 *)"New Username:");
       CLCD_vSetPosition(2, 1);
     }
-  }while (Is_Username_Exists(new_username, new_length));
+  } while (Is_Username_Exists(new_username, new_length));
 
   //=====================================================================================//
 
@@ -249,6 +296,11 @@ void Change_Username(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Changes password for current user
+ * @details Prompts for current password, validates it,
+ *          then allows setting new password with complexity requirements
+ */
 void Change_Password(void)
 {
   u8 password_flag = 1;
@@ -320,7 +372,7 @@ void Change_Password(void)
         }
       }
     }
-  }while(password_flag == 0);
+  } while (password_flag == 0);
   // Get new password
   CLCD_vClearScreen();
   CLCD_vSendString((u8 *)"New Password:");
@@ -375,7 +427,7 @@ void Change_Password(void)
       CLCD_vSendString((u8 *)"Min len: ");
       CLCD_vSendIntNumber(PASSWORD_MIN_LENGTH);
     }
-  }while(!Is_Password_Valid(temp_pass, pass_length));
+  } while (!Is_Password_Valid(temp_pass, pass_length));
 
   Write_Password(Current_User, temp_pass, pass_length);
   Log_Event(EVENT_PASS_CHANGE, Current_User);
@@ -383,12 +435,18 @@ void Change_Password(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Deletes current user account
+ * @return true if deletion successful, false if cancelled
+ * @details Requires password confirmation before deletion
+ */
 bool Delete_User(void)
 {
   CLCD_vClearScreen();
   CLCD_vSendString((u8 *)"Enter Pass to");
   CLCD_vSetPosition(2, 1);
   CLCD_vSendString((u8 *)"Delete Account");
+  CLCD_vSetPosition(3, 1);
 
   u8 temp_pass[21];
   u8 pass_length = 0;
@@ -464,6 +522,11 @@ bool Delete_User(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Admin function to delete any user account
+ * @param user_index Index of user to delete
+ * @details Only available to admin users, no confirmation needed
+ */
 void Delete_User_By_Admin(u8 user_index)
 {
   if (!Is_Admin || user_index >= User_Count)
@@ -491,6 +554,10 @@ void Delete_User_By_Admin(u8 user_index)
 
 //=====================================================================================//
 
+/**
+ * @brief Lists all registered users
+ * @details Displays usernames of all registered users on LCD
+ */
 void List_Users(void)
 {
   if (!Is_Admin)
@@ -526,6 +593,14 @@ void List_Users(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Displays and handles regular user menu
+ * @details Options include:
+ *         - Change username
+ *         - Change password
+ *         - Delete account
+ *         - Sign out
+ */
 void User_Menu(void)
 {
   while (1)
@@ -567,6 +642,13 @@ void User_Menu(void)
   }
 }
 
+/**
+ * @brief Displays and handles admin menu
+ * @details Additional options beyond user menu:
+ *         - List all users
+ *         - Delete other users
+ *         - Factory reset
+ */
 void Admin_Menu(void)
 {
   while (1)
@@ -578,7 +660,7 @@ void Admin_Menu(void)
     CLCD_vSetPosition(3, 1);
     CLCD_vSendString((u8 *)"3:User Menu");
     CLCD_vSetPosition(4, 1);
-    CLCD_vSendString((u8 *)"4:Logout");
+    CLCD_vSendString((u8 *)"4:Factory Reset");
 
     while (1)
     {
@@ -625,6 +707,9 @@ void Admin_Menu(void)
       User_Menu();
       break;
     case '4':
+      Factory_Reset();
+      break;
+    case 0x08:
       return;
     }
   }
@@ -632,6 +717,10 @@ void Admin_Menu(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Initializes EEPROM for first use
+ * @details Sets up initial state if EEPROM is empty
+ */
 void EEPROM_vInit(void)
 {
   /* Read number of users */
@@ -655,6 +744,11 @@ void EEPROM_vInit(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Sets up new username
+ * @details Handles input and validation of new username,
+ *          ensures uniqueness and proper length
+ */
 void UserName_Set(void)
 {
   USART_u8SendData(0x0D);
@@ -706,7 +800,6 @@ void UserName_Set(void)
             }
             else
             {
-
             }
           }
           else if (KPD_Press == 0x08)
@@ -736,7 +829,7 @@ void UserName_Set(void)
       CLCD_vSetPosition(2, 1);
       CLCD_vSendString((u8 *)"Max chars: ");
     }
-  }while(Is_Username_Exists(temp_username, UserName_Length));
+  } while (Is_Username_Exists(temp_username, UserName_Length));
   temp_username[UserName_Length] = '\0';
   Write_Username(User_Count, temp_username, UserName_Length);
 
@@ -749,6 +842,11 @@ void UserName_Set(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Sets up new password
+ * @details Handles input and validation of new password,
+ *          enforces complexity requirements
+ */
 void PassWord_Set(void)
 {
   USART_u8SendData(0x0D);
@@ -787,7 +885,7 @@ void PassWord_Set(void)
         {
           if (KPD_Press == 0x0D || KPD_Press == 0x0F)
           { // Enter key
-            if (PassWord_Length >= PASSWORD_MIN_LENGTH||PassWord_Length < PASSWORD_MIN_LENGTH)
+            if (PassWord_Length >= PASSWORD_MIN_LENGTH || PassWord_Length < PASSWORD_MIN_LENGTH)
               break;
           }
           else if (KPD_Press == 0x08)
@@ -822,9 +920,8 @@ void PassWord_Set(void)
       CLCD_vSetPosition(2, 1);
       CLCD_vSendString((u8 *)"Max chars: ");
       CLCD_vSendIntNumber(PASSWORD_MAX_LENGTH);
-
     }
-  }while (!Is_Password_Valid(temp_password, PassWord_Length));
+  } while (!Is_Password_Valid(temp_password, PassWord_Length));
 
   Write_Password(User_Count, temp_password, PassWord_Length);
   User_Count++;
@@ -833,6 +930,10 @@ void PassWord_Set(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Validates username during login
+ * @details Checks if entered username exists in system
+ */
 void UserName_Check(void)
 {
   CLCD_vClearScreen();
@@ -901,6 +1002,10 @@ void UserName_Check(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Validates password during login
+ * @details Verifies entered password matches stored password
+ */
 void PassWord_Check(void)
 {
   CLCD_vClearScreen();
@@ -962,6 +1067,11 @@ void PassWord_Check(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Handles user sign-in process
+ * @details Manages username/password entry and verification,
+ *          tracks login attempts
+ */
 void Sign_In(void)
 {
   while (1)
@@ -1013,6 +1123,10 @@ void Sign_In(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Handles timeout errors
+ * @details Displays timeout message and updates system state
+ */
 void Error_TimeOut(void)
 {
   CLCD_vClearScreen();
@@ -1031,6 +1145,10 @@ void Error_TimeOut(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Clears last entered character
+ * @details Helper function for input handling
+ */
 void Clear_Char(void)
 {
   CLCD_vSendCommand(CLCD_SHIFT_CURSOR_LEFT);
@@ -1040,21 +1158,34 @@ void Clear_Char(void)
 
 //=====================================================================================//
 
+/**
+ * @brief Resets system to factory settings
+ * @details Clears all user data and resets EEPROM
+ */
 void Factory_Reset(void)
 {
   // Clear all user data
-  for (u16 addr = EEPROM_START_ADDRESS; addr <= EEPROM_END_ADDRESS; addr++)
+  PassWord_Check();
+  if (PassWord_Check_Flag == 1)
   {
-    EEPROM_vWrite(addr, 0xFF);
+    CLCD_vClearScreen();
+    CLCD_vSendString("Loading ...");
+    for (u16 addr = EEPROM_START_ADDRESS; addr <= EEPROM_END_ADDRESS; addr++)
+      {
+        EEPROM_vWrite(addr, 0xFF);
+      }
+      User_Count = 0;
+      Tries = Tries_Max;
+      Log_Event(EVENT_SYSTEM_RESET, 0);
   }
-  User_Count = 0;
-  Tries = Tries_Max;
-
-  Log_Event(EVENT_SYSTEM_RESET, 0);
 }
 
 //=====================================================================================//
 
+/**
+ * @brief Handles user sign-out
+ * @details Clears current user state and returns to main menu
+ */
 void Sign_Out(void)
 {
   Current_User = 0xFF;

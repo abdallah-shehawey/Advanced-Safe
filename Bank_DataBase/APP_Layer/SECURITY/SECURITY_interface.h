@@ -18,20 +18,7 @@
 #define EEPROM_SYSTEM_STATUS       0x10 // 1 byte for system status flags
 #define EEPROM_NoTries_Location    0x12
 #define EEPROM_UserCount_Location  0x13
-#define EEPROM_ADMIN_FLAG_Location 0x14
-#define EEPROM_CHECKSUM_Location   0x15 // 1 byte for data integrity check
-#define EEPROM_BACKUP_START        0x200     // Start of backup section
 
-/* System Status Flags */
-#define SYSTEM_INITIALIZED         0x01
-#define SYSTEM_LOCKED              0x02
-#define SYSTEM_MAINTENANCE         0x04
-#define SYSTEM_BACKUP_VALID        0x08
-
-/* Security Levels */
-#define SECURITY_LEVEL_LOW         0
-#define SECURITY_LEVEL_MEDIUM      1
-#define SECURITY_LEVEL_HIGH        2
 
 /* Password Complexity Requirements */
 #define PASSWORD_MIN_LENGTH        8
@@ -44,11 +31,6 @@
 #define PASS_NEED_NUMBER           1
 #define PASS_NEED_SPECIAL          1
 
-/* User Types and Permissions */
-#define USER_TYPE_GUEST            0
-#define USER_TYPE_NORMAL           1
-#define USER_TYPE_ADMIN            2
-#define USER_TYPE_SUPER            3
 
 /* Event Types */
 #define EVENT_LOGIN_SUCCESS        0x01
@@ -58,21 +40,6 @@
 #define EVENT_USER_DELETE          0x05
 #define EVENT_USER_CREATE          0x06
 #define EVENT_SYSTEM_RESET         0x07
-#define EVENT_BACKUP_CREATE        0x08
-#define EVENT_BACKUP_RESTORE       0x09
-#define EVENT_SYSTEM_LOCK          0x0A
-#define EVENT_SYSTEM_UNLOCK        0x0B
-
-/* Error Codes */
-#define ERROR_NONE                 0x00
-#define ERROR_INVALID_USER         0x01
-#define ERROR_INVALID_PASS         0x02
-#define ERROR_USER_EXISTS          0x03
-#define ERROR_SYSTEM_FULL          0x04
-#define ERROR_TIMEOUT              0x05
-#define ERROR_SYSTEM_LOCKED        0x06
-#define ERROR_NO_PERMISSION        0x07
-#define ERROR_CHECKSUM             0x08
 
 
 typedef enum // it should be before functions prototypes

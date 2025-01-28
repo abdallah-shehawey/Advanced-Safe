@@ -41,20 +41,20 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Barking_Sys
+BUILD_ARTIFACT_NAME := Bank_System
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-Barking_Sys.lss \
+Bank_System.lss \
 
 FLASH_IMAGE += \
-Barking_Sys.hex \
+Bank_System.hex \
 
 EEPROM_IMAGE += \
-Barking_Sys.eep \
+Bank_System.eep \
 
 SIZEDUMMY += \
 sizedummy \
@@ -64,43 +64,43 @@ sizedummy \
 all: main-build
 
 # Main-build Target
-main-build: Barking_Sys.elf secondary-outputs
+main-build: Bank_System.elf secondary-outputs
 
 # Tool invocations
-Barking_Sys.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_System.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Barking_Sys.map -mmcu=atmega32 -o "Barking_Sys.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Bank_System.map -mmcu=atmega32 -o "Bank_System.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Barking_Sys.lss: Barking_Sys.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_System.lss: Bank_System.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S Barking_Sys.elf  >"Barking_Sys.lss"
+	-avr-objdump -h -S Bank_System.elf  >"Bank_System.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Barking_Sys.hex: Barking_Sys.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_System.hex: Bank_System.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Barking_Sys.elf  "Barking_Sys.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Bank_System.elf  "Bank_System.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Barking_Sys.eep: Barking_Sys.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Bank_System.eep: Bank_System.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Barking_Sys.elf  "Barking_Sys.eep"
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Bank_System.elf  "Bank_System.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Barking_Sys.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+sizedummy: Bank_System.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 Barking_Sys.elf
+	-avr-size --format=avr --mcu=atmega32 Bank_System.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Barking_Sys.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) Bank_System.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)
