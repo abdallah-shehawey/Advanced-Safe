@@ -4,4 +4,4 @@ You can view the tests for the security files related to this project at this [L
 
 ## Resources for Use and Adaptation
 
-For additional guidance on configuring and adapting these files to be suitable for your project, check out this [LinkedIn post](https://www.linkedin.com/posts/abdallah-shehawey_embeddedsystems-microcontroller-atmega32-activity-7257827462447857664-sBEJ?utm_source=share&utm_medium=member_desktop).
+For additional guidance on configuring and adapting these files to be suitable for your project, check out this [LinkedIn post](https://www.linkedin.com/posts/abdallah-shehawey_embeddedsystems-microcontroller-atmega32-activity-7257827462447857664-sBEJ?utm_source=share&utm_medium=member_desktop) and This  [LinkedIn post]([https://www.linkedin.com/posts/abdallah-shehawey_embeddedsystems-microcontroller-atmega32-activity-7257827462447857664-sBEJ?utm_source=share&utm_medium=member_desktop](https://www.linkedin.com/posts/abdallah-shehawey_embeddedsystems-atmega32-iot-activity-7289806694283403264-e6NG?utm_source=share&utm_medium=member_desktop))
