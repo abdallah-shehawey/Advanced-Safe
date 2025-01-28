@@ -44,9 +44,6 @@ Contributions are welcome! Please follow these steps:
     ```
 5. Open a pull request.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
-
 ---
 
 For any questions or feedback, feel free to contact me via LinkedIn or through this repository's issue tracker.
